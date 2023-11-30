@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="977.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.decafe.HelloController">
+   <children>
+      <ImageView fitHeight="681.0" fitWidth="977.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@startScreen.png"/>
+      </ImageView>
+      <ImageView fx:id="startButton" fitHeight="132.0" fitWidth="138.0" layoutX="429.0" layoutY="80.0"
+                 onMouseClicked="#switchToInstructions" onMouseEntered="#changeStartCoffeeImage"
+                 onMouseExited="#changeStartCoffeeImageBack" pickOnBounds="true" preserveRatio="true">
+         <Image url="@startCoffee.png"/>
+      </ImageView>
+      <ImageView fx:id="startQuitButton" fitHeight="34.0" fitWidth="104.0" layoutX="865.0" layoutY="7.0"
+                 pickOnBounds="true" preserveRatio="true" onMouseClicked="#endGame"
+                 onMouseEntered="#changeQuitStartScreen" onMouseExited="#changeQuitStartScreenBack">
+         <Image url="@quitEndScreen.png"/>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" prefHeight="743.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.decafe.HelloController">
+   <children>
+      <ImageView fitHeight="743.0" fitWidth="979.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@cafeIndoor.png" />
+      </ImageView>
+      <ImageView fx:id="coffeeMachineImageView" fitHeight="117.0" fitWidth="75.0" layoutX="9.0" layoutY="208.0" onMouseClicked="#showCoffee" pickOnBounds="true" preserveRatio="true">
+         <Image url="@coffeeMachine.png" />
+      </ImageView>
+      <ImageView fx:id="cakeMachineImageView" fitHeight="73.0" fitWidth="146.0" layoutX="4.0" layoutY="351.0" onMouseClicked="#showCake" pickOnBounds="true" preserveRatio="true">
+         <Image url="@kitchenAid.png" />
+      </ImageView>
+      <ImageView fitHeight="59.0" fitWidth="61.0" layoutX="15.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@cake.png" />
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="72.0" layoutX="515.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@chairAbove.png" />
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="72.0" layoutX="776.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@chairAbove.png" />
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="515.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@chairBottom.png" />
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="77.0" layoutX="776.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@chairBottom.png" />
+      </ImageView>
+      <ImageView fitHeight="94.0" fitWidth="77.0" layoutX="868.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@chairRight.png" />
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="82.0" layoutX="515.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@chairBottom.png" />
+      </ImageView>
+      <ImageView fx:id="waiterImageView" fitHeight="85.0" fitWidth="85.0" layoutX="108.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@CofiBrewUp.png" />
+      </ImageView>
+      <ImageView fitHeight="94.0" fitWidth="77.0" layoutX="611.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@chairRight.png" />
+      </ImageView>
+      <ImageView fx:id="first" fitHeight="73.0" fitWidth="100.0" layoutX="500.0" layoutY="120.0" onMouseClicked="#displayPerson" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@customerAbove.png" />
+      </ImageView>
+      <ImageView fx:id="second" fitHeight="73.0" fitWidth="100.0" layoutX="761.0" layoutY="120.0" onMouseClicked="#displayPerson" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@customerAbove.png" />
+      </ImageView>
+      <ImageView fx:id="third" fitHeight="73.0" fitWidth="100.0" layoutX="500.0" layoutY="314.0" onMouseClicked="#displayPerson" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@customerBottom.png" />
+      </ImageView>
+      <ImageView fx:id="fourth" fitHeight="73.0" fitWidth="100.0" layoutX="761.0" layoutY="314.0" onMouseClicked="#displayPerson" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@customerBottom.png" />
+      </ImageView>
+      <ImageView fx:id="sixth" fitHeight="73.0" fitWidth="100.0" layoutX="500.0" layoutY="620.0" onMouseClicked="#displayPerson" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@customerBottom.png" />
+      </ImageView>
+      <ImageView fx:id="seventh" fitHeight="100.0" fitWidth="73.0" layoutX="861.0" layoutY="501.0" onMouseClicked="#displayPerson" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@customerRight.png" />
+      </ImageView>
+      <ImageView fx:id="fifth" fitHeight="100.0" fitWidth="63.0" layoutX="604.0" layoutY="501.0" onMouseClicked="#displayPerson" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@customerRight.png" />
+      </ImageView>
+      <Button layoutX="1000.0" layoutY="1000.0" mnemonicParsing="false" text="" />
+      <ProgressBar fx:id="progressBarCake" layoutX="-12.0" layoutY="371.0" prefHeight="12.0" prefWidth="52.0" progress="0.0" rotate="90.0" style="-fx-accent: #32CD32;" visible="false" />
+      <ProgressBar fx:id="progressBarCoffee" layoutX="-12.0" layoutY="261.0" prefHeight="12.0" prefWidth="52.0" progress="0.0" rotate="90.0" style="-fx-accent: #32CD32;" visible="false" />
+      <Label fx:id="table1" disable="true" layoutX="497.0" layoutY="188.0" prefHeight="117.0" prefWidth="100.0" />
+      <Label fx:id="plantsAbove" layoutX="94.0" layoutY="77.0" prefHeight="63.0" prefWidth="272.0" />
+      <Label fx:id="countRight" layoutX="249.0" layoutY="306.0" prefHeight="283.0" prefWidth="63.0" />
+      <Label fx:id="countBelow" layoutX="22.0" layoutY="541.0" prefHeight="52.0" prefWidth="256.0" />
+      <Label fx:id="customerTop1" disable="true" layoutX="512.0" layoutY="122.0" prefHeight="52.0" prefWidth="77.0" />
+      <Label fx:id="customerTop2" disable="true" layoutX="770.0" layoutY="123.0" prefHeight="52.0" prefWidth="82.0" />
+      <Label fx:id="customerTop3" disable="true" layoutX="510.0" layoutY="325.0" prefHeight="43.0" prefWidth="78.0" />
+      <Label fx:id="customerTop4" disable="true" layoutX="774.0" layoutY="331.0" prefHeight="36.0" prefWidth="78.0" />
+      <Label fx:id="customerBot1" disable="true" layoutX="619.0" layoutY="507.0" prefHeight="85.0" prefWidth="50.0" />
+      <Label fx:id="customerBot2" disable="true" layoutX="509.0" layoutY="622.0" prefHeight="52.0" prefWidth="77.0" />
+      <Label fx:id="customerBot3" disable="true" layoutX="876.0" layoutY="507.0" prefHeight="85.0" prefWidth="58.0" />
+      <Label fx:id="table3" disable="true" layoutX="494.0" layoutY="495.0" prefHeight="111.0" prefWidth="107.0" />
+      <Label fx:id="table4" disable="true" layoutX="752.0" layoutY="495.0" prefHeight="111.0" prefWidth="107.0" />
+      <Label fx:id="plant" layoutX="915.0" layoutY="91.0" prefHeight="35.0" prefWidth="42.0" />
+      <Label fx:id="table2" disable="true" layoutX="753.0" layoutY="188.0" prefHeight="117.0" prefWidth="107.0" />
+      <Label fx:id="edgeTop" disable="true" layoutX="6.0" layoutY="35.0" prefHeight="43.0" prefWidth="976.0" />
+      <Label fx:id="edgeLeft" disable="true" layoutX="22.0" layoutY="55.0" prefHeight="705.0" prefWidth="50.0" />
+      <Label fx:id="edgeBot" disable="true" layoutX="-10.0" layoutY="730.0" prefHeight="36.0" prefWidth="1007.0" />
+      <Label fx:id="edgeRight" disable="true" layoutX="969.0" layoutY="17.0" prefHeight="743.0" prefWidth="34.0" />
+      <Label fx:id="coinsEarnedLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="66.0" layoutY="26.0" prefHeight="25.0" prefWidth="63.0" style="-fx-background-color: white;" text="0">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Label>
+      <ImageView fx:id="trashcanImageView" fitHeight="66.0" fitWidth="58.0" layoutX="310.0" layoutY="76.0" onMouseClicked="#noProduct" pickOnBounds="true" preserveRatio="true">
+         <Image url="@trashcan.png" />
+      </ImageView>
+      <ImageView fx:id="smileySeventh" disable="true" fitHeight="36.0" fitWidth="30.0" layoutX="884.0" layoutY="534.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="smileySixth" disable="true" fitHeight="36.0" fitWidth="30.0" layoutX="535.0" layoutY="635.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="smileyThird" disable="true" fitHeight="36.0" fitWidth="30.0" layoutX="536.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="smileyFirst" disable="true" fitHeight="36.0" fitWidth="30.0" layoutX="535.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="smileySecond" disable="true" fitHeight="36.0" fitWidth="30.0" layoutX="797.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="smileyFourth" disable="true" fitHeight="36.0" fitWidth="30.0" layoutX="796.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="coffee" fx:id="upgradeCoffeeImageView" disable="true" fitHeight="60.0" fitWidth="92.0" layoutX="169.0" layoutY="9.0" onMouseClicked="#doUpgrade" pickOnBounds="true" preserveRatio="true">
+         <Image url="@coffeeUsed.png" />
+      </ImageView>
+      <ImageView id="cake" fx:id="upgradeCakeImageView" disable="true" fitHeight="60.0" fitWidth="92.0" layoutX="237.0" layoutY="9.0" onMouseClicked="#doUpgrade" pickOnBounds="true" preserveRatio="true">
+         <Image url="@cakeUsed.png" />
+      </ImageView>
+      <ImageView id="player" fx:id="upgradePlayerImageView" disable="true" fitHeight="60.0" fitWidth="92.0" layoutX="309.0" layoutY="5.0" onMouseClicked="#doUpgrade" pickOnBounds="true" preserveRatio="true">
+         <Image url="@upgradeSkatesUsed.png" />
+      </ImageView>
+      <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="892.0" onMouseClicked="#endGameQuick" pickOnBounds="true" preserveRatio="true">
+         <Image url="@exitsign.png" />
+      </ImageView>
+      <ImageView fx:id="coinFirst" disable="true" fitHeight="35.0" fitWidth="34.0" layoutX="532.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@coin.png" />
+      </ImageView>
+      <ImageView fx:id="coinThird" disable="true" fitHeight="35.0" fitWidth="34.0" layoutX="532.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@coin.png" />
+      </ImageView>
+      <ImageView fx:id="coinFourth" disable="true" fitHeight="35.0" fitWidth="34.0" layoutX="793.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@coin.png" />
+      </ImageView>
+      <ImageView fx:id="coinFifth" disable="true" fitHeight="35.0" fitWidth="34.0" layoutX="568.0" layoutY="532.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@coin.png" />
+      </ImageView>
+      <ImageView fx:id="coinSixth" disable="true" fitHeight="35.0" fitWidth="34.0" layoutX="532.0" layoutY="575.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@coin.png" />
+      </ImageView>
+      <ImageView fx:id="coinSeventh" disable="true" fitHeight="35.0" fitWidth="34.0" layoutX="825.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@coin.png" />
+      </ImageView>
+      <ImageView fx:id="coinSecond" disable="true" fitHeight="35.0" fitWidth="34.0" layoutX="793.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <Image url="@coin.png" />
+      </ImageView>
+      <ImageView fx:id="orderlabel5" fitHeight="43.0" fitWidth="122.0" layoutX="529.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="orderlabel7" fitHeight="43.0" fitWidth="122.0" layoutX="788.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="orderlabel2" fitHeight="43.0" fitWidth="122.0" layoutX="688.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="orderlabel1" fitHeight="43.0" fitWidth="122.0" layoutX="431.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="orderlabel3" fitHeight="43.0" fitWidth="122.0" layoutX="570.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="orderlabel4" fitHeight="43.0" fitWidth="122.0" layoutX="834.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="43.0" fitWidth="122.0" layoutX="834.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="orderlabel6" fitHeight="43.0" fitWidth="122.0" layoutX="570.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="smileyFifth" disable="true" fitHeight="36.0" fitWidth="30.0" layoutX="627.0" layoutY="534.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
