@@ -11,6 +11,7 @@ import java.io.IOException;
 // Class used to start the JavaFX Application
 public class HelloApplication extends Application {
 
+    // why static is public, should we use final insted ???
     public static Stage stage;
     @Override
     // Start Application by starting the Stage
