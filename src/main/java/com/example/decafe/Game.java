@@ -92,7 +92,9 @@ public class Game {
         }
     }
 
+    // no default for switch case
     // Method to do a certain upgrade
+    // bad name for Player class
     public void doUpgrade(String type, Player CofiBrew) throws FileNotFoundException {
         switch (type) { // Switch the type of upgrade you received
             case "coffee" -> { // If the player chose the coffee upgrade
@@ -117,6 +119,7 @@ public class Game {
     }
 
     // Method to increase coins earned according to how satisfied the customer was
+    // we could change name, full satisfied ,  and unsatisfied customer then we will not need comments
     public void setCoinsEarned(Customer customer){
         if (customer.isGreen()){ // If customer was happy
             // Increase coin score by 5
