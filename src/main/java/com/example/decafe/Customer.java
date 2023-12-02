@@ -28,6 +28,7 @@ public class Customer {
 
     private boolean leftUnhappy = true; //boolean to see if customer has left unhappy (received wrong order or left after 60 secs)
 
+    // most of this variable  is not use outside package why they are public
     public static List<Customer> customersInCoffeeShop = new ArrayList<>(); //list with all customers that are in the café
     public static List<Customer> allCustomers = new ArrayList<>(); //list with all customers ever created
     public static List<Integer> freeChairs; //integer list with all chair numbers
@@ -99,6 +100,7 @@ public class Customer {
         Random random = new Random();
         int number = random.nextInt(2);
 
+      // no default case for switch
         switch (number) {
             case 0 -> order = "cake";
             case 1 -> order = "coffee";
@@ -194,6 +196,7 @@ public class Customer {
 
     //Methode to spawn customers
     public static void spawnCustomers(){
+        // is Empty() better insted of freeChairs.size() != 0
         if (customersInCoffeeShop.size() < 3 && freeChairs.size() != 0) { //spawn a new customer this when under 3 customers are in the café
             ImageView customerImage = getRandomPic(); //get random picture from Array
             customerImage.setVisible(true); //make this picture visible
@@ -252,6 +255,7 @@ public class Customer {
 
     //Methode for the general 60 seconds timer
     public void waitingTime()  {
+        // this local Variable  not import class why it named like this
         Customer customer = this;
         TimerTask timerTask = new TimerTask() {
             int seconds = 60;
@@ -346,6 +350,7 @@ public class Customer {
     }
 
     //when the customer leaves after 60 seconds without being served or received wrong order
+    // we should change name of function for example unsatisfiedCustomer
     public static void noMoneySpent(Customer customer) throws FileNotFoundException {
         customer.coinImage.setVisible(false);
         customer.coinImage.setDisable(true);
@@ -377,7 +382,7 @@ public class Customer {
             File f = new File("");
             String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "rightChoice.mp3";
             AudioClip rightOrder = new AudioClip(new File(musicFile).toURI().toString());
-            //MediaPlayer collectMoney = new MediaPlayer(sound);
+            //MediaPlayer collectMoney = new MediaPlayer(sound);    not needed
             rightOrder.play();
         }
     }
