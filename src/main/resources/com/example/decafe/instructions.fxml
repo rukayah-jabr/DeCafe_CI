@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="977.0" style="-fx-background-color: #b2bbb5;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.decafe.HelloController">
+   <children>
+      <ImageView fx:id="gameStartButton" fitHeight="101.0" fitWidth="190.0" layoutX="734.0" layoutY="546.0"
+                 onMouseClicked="#switchToGameScreen" onMouseEntered="#changeStartImage"
+                 onMouseExited="#changeStartImageBack" pickOnBounds="true" preserveRatio="true">
+         <Image url="@instructionsGotItBrighter.png"/>
+      </ImageView>
+      <ImageView fitHeight="81.0" fitWidth="312.0" layoutX="28.0" layoutY="21.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructionsHowToPlay.png"/>
+      </ImageView>
+      <ImageView fitHeight="81.0" fitWidth="240.0" layoutX="409.0" layoutY="437.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructionsClickCoins.png"/>
+      </ImageView>
+      <ImageView fitHeight="76.0" fitWidth="252.0" layoutX="649.0" layoutY="234.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructionsClickCustomers.png"/>
+      </ImageView>
+      <ImageView fitHeight="101.0" fitWidth="318.0" layoutX="46.0" layoutY="438.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructionsClickMachines.png"/>
+      </ImageView>
+      <ImageView fitHeight="196.0" fitWidth="292.0" layoutX="46.0" layoutY="123.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructionsGoal1.png"/>
+      </ImageView>
+      <ImageView fitHeight="62.0" fitWidth="224.0" layoutX="689.0" layoutY="437.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructions80Coins.png"/>
+      </ImageView>
+      <ImageView fitHeight="88.0" fitWidth="689.0" layoutX="28.0" layoutY="555.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructionsHint.png"/>
+      </ImageView>
+      <ImageView fitHeight="178.0" fitWidth="240.0" layoutX="372.0" layoutY="117.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructionsWASD.png"/>
+      </ImageView>
+      <ImageView fitHeight="81.0" fitWidth="143.0" layoutX="84.0" layoutY="352.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@coffeeMachineWithCoffeeTilted.png"/>
+      </ImageView>
+      <ImageView fitHeight="81.0" fitWidth="129.0" layoutX="710.0" layoutY="157.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@customerAbove.png"/>
+      </ImageView>
+      <ImageView fitHeight="76.0" fitWidth="76.0" layoutX="536.0" layoutY="352.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@3coins.png"/>
+      </ImageView>
+      <ImageView fitHeight="97.0" fitWidth="76.0" layoutX="443.0" layoutY="352.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@5coins.png"/>
+      </ImageView>
+      <ImageView fitHeight="102.0" fitWidth="105.0" layoutX="216.0" layoutY="345.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@cake.png"/>
+      </ImageView>
+      <ImageView fitHeight="55.0" fitWidth="52.0" layoutX="768.0" layoutY="372.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@instructionsCoin.png"/>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="31.0" layoutX="495.0" layoutY="400.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@mouseCursor.png"/>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="779.0" layoutY="195.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@mouseCursor.png"/>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="31.0" layoutX="126.0" layoutY="375.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@mouseCursor.png"/>
+      </ImageView>
+   </children>
+</AnchorPane>
