@@ -35,6 +35,7 @@ public class Customer {
     public static ImageView[] orderLabels;
     public static ImageView[] coinImages;
 
+    String SRC = "src", MAIN = "main", RESOURCES = "resources", COM = "com", EXAMPLE = "example", DECAFE = "decafe";
     Customer(){}
     Customer(ImageView image, ImageView label, int chairsOccupiedByCustomers, ImageView customerSmileyMood, ImageView customerPaymentPicture) {
         this.customerPicture = image;
@@ -46,9 +47,7 @@ public class Customer {
         this.sixtySecondsWaitingTimer = new Timer();
     }
 
-
     public Image createImageFilePath(String filename) throws FileNotFoundException {
-        String SRC = "src", MAIN = "main", RESOURCES = "resources", COM = "com", EXAMPLE = "example", DECAFE = "decafe";
         File filepath = new File("");
         String filePath = filepath.getAbsolutePath() + File.separator + SRC + File.separator + MAIN + File.separator + RESOURCES + File.separator
                 + COM + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + filename;
@@ -76,7 +75,6 @@ public class Customer {
         return customerOrder;
     }
 
-
     public static ImageView getCustomerRandomPic(){
         Random random = new Random();
         int index = freeChairs.get(random.nextInt(freeChairs.size()));
@@ -91,7 +89,6 @@ public class Customer {
         return customerImages[index];
     }
 
-
     public static void spawnCustomerIFLessThanThreeInShop(){
         if (customersInCoffeeShop.size() < 3 && freeChairs.size() != 0) {
             ImageView customerImage = getCustomerRandomPic();
@@ -99,11 +96,10 @@ public class Customer {
             ImageView order = getCustomerOrderLabel(customerImage);
             ImageView smiley = getCustomerImage(customerImage, smileyImages);
             ImageView coin = getCustomerImage(customerImage, coinImages);
-
+            String SRC = "src", MAIN = "main", RESOURCES = "resources", COM = "com", EXAMPLE = "example", DECAFE = "decafe";
             Customer customer = new Customer(customerImage, order, freeSeatChosen, smiley, coin);
             customersInCoffeeShop.add(customer); //to check if not more than 3 customers are in the store
             allCustomersCreated.add(customer); //to stop all timers that are still alive even after customer has
-            String SRC = "src", MAIN = "main", RESOURCES = "resources", COM = "com", EXAMPLE = "example", DECAFE = "decafe";
             File f = new File("");
             String musicFile = f.getAbsolutePath() + File.separator + SRC + File.separator + MAIN + File.separator + RESOURCES + File.separator
                     + COM + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "doorBell.mp3";
@@ -182,7 +178,6 @@ public class Customer {
         isRedSmiley = red;
     }
 
-
     public void displayOrder(ImageView orderlabel) throws FileNotFoundException {
         this.customerOrder = getCustomerRandomOrder();
         setCustomerOrder(customerOrder);
@@ -212,12 +207,7 @@ public class Customer {
     }
 
 
-
-
-
-
     //Methode to check if the order is right or wrong
-
     public boolean checkOrder(Player CofiBrew, Customer customer, ImageView waiterImage) throws FileNotFoundException{
         waiterImage.setImage(createImageFilePath(CofiBrew.getFilenameImageWithoutProduct())); //set CofiBrew without order
         if (CofiBrew.getProductInHand().equals(customer.getCustomerOrder())) { //if CofiBrew has the right order
@@ -248,8 +238,8 @@ public class Customer {
         this.customerPaymentPicture.setDisable(false);
         if (this.isCustomerLeftUnhappy){ //when customer leaves after 60 seconds or received wrong order
             File f = new File("");
-            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator
-                    + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "wrongChoice.mp3";
+            String musicFile = f.getAbsolutePath() + File.separator + SRC + File.separator + MAIN + File.separator + RESOURCES + File.separator
+                    + COM + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "wrongChoice.mp3";
             AudioClip wrongOrder = new AudioClip(new File(musicFile).toURI().toString());
             wrongOrder.play();
             this.customerPaymentPicture.setImage(this.createImageFilePath("coin.png")); // set coin Image to empty plate
@@ -262,8 +252,8 @@ public class Customer {
             });
         } else {
             File f = new File("");
-            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator +
-                    "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "rightChoice.mp3";
+            String musicFile = f.getAbsolutePath() + File.separator + SRC + File.separator + MAIN + File.separator + RESOURCES + File.separator +
+                    COM + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "rightChoice.mp3";
             AudioClip rightOrder = new AudioClip(new File(musicFile).toURI().toString());
             rightOrder.play();
         }
