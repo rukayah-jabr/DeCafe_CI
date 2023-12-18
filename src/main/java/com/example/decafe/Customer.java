@@ -151,18 +151,18 @@ public class Customer {
     public void customerWaitingTime()  {
         Customer customer = this;
         TimerTask timerTask = new TimerTask() {
-            int waithingSeconds = 60;
+            int totalWaitingSecondsByCustomer = 60;
             @Override
             public void run() {
-                waithingSeconds--;
-                if (waithingSeconds == 59){ //set green smiley when the customer has just spawned
+                totalWaitingSecondsByCustomer--;
+                if (totalWaitingSecondsByCustomer == 59){
                     setCustomerMoodImage("smileygreen.png", true, false, false);
-                }else if (waithingSeconds == 30){ //set yellow smiley when the customer has just spawned
+                }else if (totalWaitingSecondsByCustomer == 30){
                     setCustomerMoodImage("smileyyellow.png", false, true, false);
-                }else if (waithingSeconds == 15){ //set red smiley when the customer has just spawned
+                }else if (totalWaitingSecondsByCustomer == 15){
                     setCustomerMoodImage("smileyred.png", false, false, true);
                 }
-                else if (waithingSeconds == 0){ //when the timer has finished - customer leaves
+                else if (totalWaitingSecondsByCustomer == 0){ //when the timer has finished - customer leaves
                     startTimerForCustomersLeave(customer);
                 }
             }
@@ -183,41 +183,38 @@ public class Customer {
     }
 
 
-
-
-
-
-
-    //Methode to display order
-
     public void displayOrder(ImageView orderlabel) throws FileNotFoundException {
         this.customerOrder = getCustomerRandomOrder();
         setCustomerOrder(customerOrder);
-        if(customerOrder.equals("cake")) {
-            if (chairsOccupiedByCustomers == 0 || chairsOccupiedByCustomers == 1 || chairsOccupiedByCustomers == 4 || chairsOccupiedByCustomers == 6) {
-                orderlabel.setVisible(true);
-                orderlabel.setImage(createImageFilePath("bubbleCakeTopLeft.png"));
-            } else if(chairsOccupiedByCustomers == 2 || chairsOccupiedByCustomers == 3){
-                orderlabel.setVisible(true);
-                orderlabel.setImage(createImageFilePath("bubbleCakeTopRight.png"));
-            } else if(chairsOccupiedByCustomers == 5) {
-                orderlabel.setVisible(true);
-                orderlabel.setImage(createImageFilePath("bubbleCakeBottomRight.png"));
-            }
-        } else if(customerOrder.equals("coffee")){
-            if (chairsOccupiedByCustomers == 0 || chairsOccupiedByCustomers == 1 || chairsOccupiedByCustomers == 4 || chairsOccupiedByCustomers == 6) {
-                orderlabel.setVisible(true);
-                orderlabel.setImage(createImageFilePath("bubbleCoffeeTopLeft.png"));
-            } else if(chairsOccupiedByCustomers == 2 || chairsOccupiedByCustomers == 3){
-                orderlabel.setVisible(true);
-                orderlabel.setImage(createImageFilePath("bubbleCoffeeTopRight.png"));
-            } else if(chairsOccupiedByCustomers == 5){
-                orderlabel.setVisible(true);
-                orderlabel.setImage(createImageFilePath("bubbleCoffeeBottomRight.png"));
-            }
+
+        if (customerOrder.equals("cake")) {
+            displayOrderBubble(orderlabel, "bubbleCake", chairsOccupiedByCustomers);
+        } else if (customerOrder.equals("coffee")) {
+            displayOrderBubble(orderlabel, "bubbleCoffee", chairsOccupiedByCustomers);
         }
         this.isCustomerOrdered = true;
     }
+
+    private void displayOrderBubble(ImageView orderlabel, String bubbleType, int chairsOccupied) throws FileNotFoundException {
+        String imageFileName;
+        if (chairsOccupied == 0 || chairsOccupied == 1 || chairsOccupied == 4 || chairsOccupied == 6) {
+            imageFileName = bubbleType + "TopLeft.png";
+        } else if (chairsOccupied == 2 || chairsOccupied == 3) {
+            imageFileName = bubbleType + "TopRight.png";
+        } else if (chairsOccupied == 5) {
+            imageFileName = bubbleType + "BottomRight.png";
+        } else {
+            return; // Handle other cases if needed
+        }
+
+        orderlabel.setVisible(true);
+        orderlabel.setImage(createImageFilePath(imageFileName));
+    }
+
+
+
+
+
 
     //Methode to check if the order is right or wrong
 
@@ -251,9 +248,9 @@ public class Customer {
         this.customerPaymentPicture.setDisable(false);
         if (this.isCustomerLeftUnhappy){ //when customer leaves after 60 seconds or received wrong order
             File f = new File("");
-            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "wrongChoice.mp3";
+            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator
+                    + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "wrongChoice.mp3";
             AudioClip wrongOrder = new AudioClip(new File(musicFile).toURI().toString());
-            //MediaPlayer collectMoney = new MediaPlayer(sound);
             wrongOrder.play();
             this.customerPaymentPicture.setImage(this.createImageFilePath("coin.png")); // set coin Image to empty plate
             this.customerPaymentPicture.setOnMouseClicked(event1 -> { // set click event to this
@@ -265,9 +262,9 @@ public class Customer {
             });
         } else {
             File f = new File("");
-            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "rightChoice.mp3";
+            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator +
+                    "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "rightChoice.mp3";
             AudioClip rightOrder = new AudioClip(new File(musicFile).toURI().toString());
-            //MediaPlayer collectMoney = new MediaPlayer(sound);
             rightOrder.play();
         }
     }
