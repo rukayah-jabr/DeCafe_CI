@@ -16,8 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 import java.io.*;
 import java.net.URL;
@@ -162,10 +160,10 @@ public class HelloController implements Initializable {
         loadScene("gameScreen.fxml");
         if (Customer.customerImages[0] != null) {
             Customer customer = new Customer();
-            customer.startTimerSpawn(1, Customer.getControllerTimer());
-            customer.startTimerSpawn(5, Customer.getControllerTimer());
-            customer.startTimerSpawn(10, Customer.getControllerTimer());
-            Customer.allCustomers.add(customer);
+            customer.startTimerSpawn(1, Customer.getSpawingTimer());
+            customer.startTimerSpawn(5, Customer.getSpawingTimer());
+            customer.startTimerSpawn(10, Customer.getSpawingTimer());
+            Customer.allCustomersCreated.add(customer);
         }
         backgroundMusic.setCycleCount(AudioClip.INDEFINITE);
         backgroundMusic.play();
@@ -323,7 +321,7 @@ public class HelloController implements Initializable {
         Customer.orderLabels = new ImageView[]{orderlabel1, orderlabel2, orderlabel3, orderlabel4, orderlabel5, orderlabel6, orderlabel7}; //make label label[]
         Customer.coinImages = new ImageView[]{coinFirst, coinSecond, coinThird, coinFourth, coinFifth, coinSixth, coinSeventh}; //make coin ImageView[]
         Customer.freeChairs = new ArrayList<>(Arrays.asList(0,1,2,3,4,5,6)); //make freeChairs Array
-        Customer.setControllerTimer(controllerTimer); //set the static timer t
+        Customer.setSpawingTimer(controllerTimer); //set the static timer t
         Play = new Game(upgradeCoffeeImageView, upgradeCakeImageView, upgradePlayerImageView); // initialise Game Object with upgrade ImageViews
     }
 
@@ -448,26 +446,26 @@ public class HelloController implements Initializable {
         ImageView customerImageView = (ImageView) event.getSource(); //get the Customer of the clicked Image
         Customer customer = findCustomer(Customer.customersInCoffeeShop, customerImageView); //make new customer object
 
-        if (!customer.isAlreadyOrdered()) { //if customer has not ordered yet, display an order
+        if (!customer.isCustomerOrdered()) { //if customer has not ordered yet, display an order
             customer.displayOrder(customer.getLabel());
         } else {
             if (customerImageView.getBoundsInParent().intersects(waiterImageView.getBoundsInParent())) { // If customer has already ordered and waiter is near the customer
                 try {
-                    customer.startTimerSpawn(5, Customer.getControllerTimer()); // spawn a new customer if a chair is free
+                    customer.startTimerSpawn(5, Customer.getSpawingTimer()); // spawn a new customer if a chair is free
                 } catch (NullPointerException e) {
                     switchToEndScreen();
                 }
                 if (customer.checkOrder(CofiBrew, customer, waiterImageView)) { // check if order the waiter has in his hands is the one the customer ordered
                     String moneyImage = ""; // if so set the relating coin ImageView
-                    if (customer.isGreen()) { // if customer left happy
+                    if (customer.isGreenSmiley()) { // if customer left happy
                         moneyImage = Play.getFilenameImageDollar();
-                    } else if (customer.isYellow()) { // if customer left normal
+                    } else if (customer.isYellowSmiley()) { // if customer left normal
                         moneyImage = Play.getFilenameImageFourCoins();
-                    } else if (customer.isRed()) { // if customer left sad
+                    } else if (customer.isRedSmiley()) { // if customer left sad
                         moneyImage = Play.getFilenameImageThreeCoins();
                     }
-                    customer.getCoinImage().setImage(createImage(moneyImage)); //set coin image
-                    customer.getCoinImage().setOnMouseClicked(event1 -> { // set click event for coin image
+                    customer.getCustomerPaymentPicture().setImage(createImage(moneyImage)); //set coin image
+                    customer.getCustomerPaymentPicture().setOnMouseClicked(event1 -> { // set click event for coin image
                         try {
                             getMoney(event1, customer); // if coin Image is clicked jump to this method
                         } catch (IOException e) {
@@ -524,7 +522,7 @@ public class HelloController implements Initializable {
         AudioClip collectMoney = new AudioClip(new File(musicFile).toURI().toString());
         //MediaPlayer collectMoney = new MediaPlayer(sound);
         collectMoney.play();
-        Customer.addFreeSeat(customer.getChair()); // add the seat chosen from the customer to the freeSeatsArray again
+        Customer.addFreeSeat(customer.getChairsOccupiedByCustomers()); // add the seat chosen from the customer to the freeSeatsArray again
         Play.setCoinsEarned(customer); // set the money earned according to what amount of money the customer left
         ((ImageView) e.getSource()).setVisible(false); // disable the coin Image and make it invisible
         ((ImageView) e.getSource()).setDisable(true);
@@ -535,7 +533,7 @@ public class HelloController implements Initializable {
             checkUpgradePossible(Play.getPlayerUpgrade());
             coinsEarnedLabel.setText(String.valueOf(Play.getCoinsEarned())); // refresh the coin score shown in GUI
             try {
-                customer.startTimerSpawn(5, Customer.getControllerTimer()); // spawn a new customer
+                customer.startTimerSpawn(5, Customer.getSpawingTimer()); // spawn a new customer
             } catch (NullPointerException y) {
                 switchToEndScreen();
             }
@@ -547,17 +545,17 @@ public class HelloController implements Initializable {
 
     // Method used to stop all the timers activated by spawning customers
     public void stopTimers() {
-        for (Customer customer : Customer.allCustomers) { // cancel all 60 seconds timers
-            if (customer.getSixtySecondsTimer() != null) {
-                customer.getSixtySecondsTimer().cancel();
+        for (Customer customer : Customer.allCustomersCreated) { // cancel all 60 seconds timers
+            if (customer.getSixtySecondsWaitingTimer() != null) {
+                customer.getSixtySecondsWaitingTimer().cancel();
             }
         }
-        Customer.allCustomers.clear(); // clear all Lists created by spawning/despawning customer
+        Customer.allCustomersCreated.clear(); // clear all Lists created by spawning/despawning customer
         Customer.customersInCoffeeShop.clear();
         Customer.freeChairs.clear();
         CofiBrew.setProductInHand("none"); // clear Cofis hand
         controllerTimer.cancel(); // cancel spawn/leaving timer
-        Customer.getControllerTimer().cancel();
+        Customer.getSpawingTimer().cancel();
     }
 
     // end game (called when exit clicked) - in Game Screen

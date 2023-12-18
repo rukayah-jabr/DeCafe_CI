@@ -118,13 +118,13 @@ public class Game {
 
     // Method to increase coins earned according to how satisfied the customer was
     public void setCoinsEarned(Customer customer){
-        if (customer.isGreen()){ // If customer was happy
+        if (customer.isGreenSmiley()){ // If customer was happy
             // Increase coin score by 5
             this.coinsEarned += 7;
-        } else if (customer.isYellow()){ // If customer left in a "normal" mood
+        } else if (customer.isYellowSmiley()){ // If customer left in a "normal" mood
             // Increase coin score by 4
             this.coinsEarned += 5;
-        }else if (customer.isRed()){ // If customer lef in a bad mood
+        }else if (customer.isRedSmiley()){ // If customer lef in a bad mood
             // Increase coin score by 3
             this.coinsEarned += 3;
         }
