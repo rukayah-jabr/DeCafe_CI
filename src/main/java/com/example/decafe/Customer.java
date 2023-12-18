@@ -56,43 +56,43 @@ public class Customer {
         return sixtySecondsWaitingTimer;
     }
 
-    public static void addFreeSeat(int chairLeft) { //add chair number to the list when customer has left
+    public static void addFreeSeat(int chairLeft) {
         Customer.freeChairs.add(chairLeft);
     }
 
-    public boolean isGreenSmiley() { //to see if the color of the smiley
+    public boolean isGreenSmiley() {
         return isGreenSmiley;
     }
 
-    public boolean isRedSmiley() { //to see if the color of the smiley
+    public boolean isRedSmiley() {
         return isRedSmiley;
     }
 
-    public boolean isYellowSmiley() { //to see if the color of the smiley
+    public boolean isYellowSmiley() {
         return isYellowSmiley;
     }
 
-    public boolean isCustomerOrdered() { //return if the customer has already ordered or not
+    public boolean isCustomerOrdered() {
         return this.isCustomerOrdered;
     }
 
-    public String getCustomerOrder() { //returns the order of the customer
+    public String getCustomerOrder() {
         return customerOrder;
     }
 
-    public int getChairsOccupiedByCustomers() { //get the number of the chair the customer is sitting
+    public int getChairsOccupiedByCustomers() {
         return chairsOccupiedByCustomers;
     }
 
-    public ImageView getCustomerMoodImage() { //returns the image of the customer
+    public ImageView getCustomerMoodImage() {
         return this.customerPicture;
     }
 
-    public ImageView getCustomerOrderLabel() { //returns the label of the customer
+    public ImageView getCustomerOrderLabel() {
         return this.orderLabel;
     }
 
-    public String getRandomOrder() { //returns random order
+    public String getCustomerRandomOrder() {
 
         Random random = new Random();
         int number = random.nextInt(2);
@@ -101,24 +101,22 @@ public class Customer {
             case 0 -> customerOrder = "cake";
             case 1 -> customerOrder = "coffee";
         }
-
         return customerOrder;
     }
 
-    public ImageView getCustomerPaymentPicture() { //returns the image of the coin
+    public ImageView getCustomerPaymentPicture() {
         return customerPaymentPicture;
     }
 
-    // Setter
-    public void setCustomerOrder(String customerOrder) { //sets the order of the customer
+    public void setCustomerOrder(String customerOrder) {
         this.customerOrder = customerOrder;
     }
 
-    public static void setSpawingTimer(Timer spawingTimer) { //sets the timer
+    public static void setSpawingTimer(Timer spawingTimer) {
         Customer.spawingTimer = spawingTimer;
     }
 
-    // Method used to create an Image Object
+
     public Image createImageFilePath(String filename) throws FileNotFoundException {
         String SRC = "src", MAIN = "main", RESOURCES = "resources", COM = "com", EXAMPLE = "example", DECAFE = "decafe";
         File filepath = new File("");
@@ -148,14 +146,14 @@ public class Customer {
         return customerOrder;
     }
 
-    //Returns random customer picture
-    public static ImageView getRandomPic(){
+
+    public static ImageView getCustomerRandomPic(){
         Random random = new Random();
         int index = freeChairs.get(random.nextInt(freeChairs.size()));
         freeSeatChosen = index;
 
         if (!freeChairs.contains(index)) { //when the customer is already visible make new random number
-            getRandomPic();
+            getCustomerRandomPic();
         }
 
         freeChairs.remove(Integer.valueOf(index)); //remove the number from the number list of chairs so there are no duplicates
@@ -163,10 +161,10 @@ public class Customer {
         return customerImages[index];
     }
 
-    //Methode to spawn customers
+    
     public static void spawnCustomers(){
         if (customersInCoffeeShop.size() < 3 && freeChairs.size() != 0) { //spawn a new customer this when under 3 customers are in the café
-            ImageView customerImage = getRandomPic(); //get random picture from Array
+            ImageView customerImage = getCustomerRandomPic(); //get random picture from Array
             customerImage.setVisible(true); //make this picture visible
 
             ImageView order = getCustomerOrderLabel(customerImage); //get the label for the customer
@@ -272,7 +270,7 @@ public class Customer {
 
     //Methode to display order
     public void displayOrder(ImageView orderlabel) throws FileNotFoundException {
-        this.customerOrder = getRandomOrder();
+        this.customerOrder = getCustomerRandomOrder();
         setCustomerOrder(customerOrder);
         if(customerOrder.equals("cake")) {
             if (chairsOccupiedByCustomers == 0 || chairsOccupiedByCustomers == 1 || chairsOccupiedByCustomers == 4 || chairsOccupiedByCustomers == 6) {
