@@ -434,7 +434,7 @@ public class HelloController implements Initializable {
     // find the customer in the customerList and return it
     public Customer findCustomer(List<Customer> customerList, ImageView customerImageView) {
         for (Customer customer : customerList) {
-            if (customer.getImage().equals(customerImageView)) {
+            if (customer.getCustomerMoodImage().equals(customerImageView)) {
                 return customer;
             }
         }
@@ -447,7 +447,7 @@ public class HelloController implements Initializable {
         Customer customer = findCustomer(Customer.customersInCoffeeShop, customerImageView); //make new customer object
 
         if (!customer.isCustomerOrdered()) { //if customer has not ordered yet, display an order
-            customer.displayOrder(customer.getLabel());
+            customer.displayOrder(customer.getCustomerOrderLabel());
         } else {
             if (customerImageView.getBoundsInParent().intersects(waiterImageView.getBoundsInParent())) { // If customer has already ordered and waiter is near the customer
                 try {

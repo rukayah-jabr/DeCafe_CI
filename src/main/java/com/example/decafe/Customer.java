@@ -84,11 +84,11 @@ public class Customer {
         return chairsOccupiedByCustomers;
     }
 
-    public ImageView getImage() { //returns the image of the customer
+    public ImageView getCustomerMoodImage() { //returns the image of the customer
         return this.customerPicture;
     }
 
-    public ImageView getLabel() { //returns the label of the customer
+    public ImageView getCustomerOrderLabel() { //returns the label of the customer
         return this.orderLabel;
     }
 
@@ -119,60 +119,33 @@ public class Customer {
     }
 
     // Method used to create an Image Object
-    public Image createImage(String filename) throws FileNotFoundException {
-        File f = new File(""); // Get filepath of project
-        // Get path to certain Image
-        String filePath = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + filename;
-        InputStream stream = new FileInputStream(filePath); // Convert path into stream
-        return new Image(stream); // Convert stream to Image and return it
+    public Image createImageFilePath(String filename) throws FileNotFoundException {
+        String SRC = "src", MAIN = "main", RESOURCES = "resources", COM = "com", EXAMPLE = "example", DECAFE = "decafe";
+        File filepath = new File("");
+        String filePath = filepath.getAbsolutePath() + File.separator + SRC + File.separator + MAIN + File.separator + RESOURCES + File.separator
+                + COM + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + filename;
+        InputStream stream = new FileInputStream(filePath);
+        return new Image(stream);
     }
 
-    //Returns the appropriate image for the customer
-    public static ImageView getImage(ImageView customer, ImageView[] searchArray ){
+    public static ImageView getCustomerMoodImage(ImageView customer, ImageView[] searchArray ){
         ImageView wantedImage = new ImageView();
-
-        if (customerImages[0].equals(customer)) {
-            wantedImage = searchArray[0];
-        } else if (customerImages[1].equals(customer)) {
-            wantedImage = searchArray[1];
-        } else if (customerImages[2].equals(customer)) {
-            wantedImage = searchArray[2];
-        } else if (customerImages[3].equals(customer)) {
-            wantedImage = searchArray[3];
-        } else if (customerImages[4].equals(customer)) {
-            wantedImage = searchArray[4];
-        } else if (customerImages[5].equals(customer)) {
-            wantedImage = searchArray[5];
-        } else if (customerImages[6].equals(customer)) {
-            wantedImage = searchArray[6];
+        for (int i = 0; i < customerImages.length; i++) {
+            if (customerImages[i].equals(customer)) {
+                wantedImage = searchArray[i];
+            }
         }
-
         return wantedImage;
     }
 
-    //Returns the appropriate label for the customer
-    public static ImageView getLabel(ImageView customer) {
-
+    public static ImageView getCustomerOrderLabel(ImageView customer) {
         ImageView customerOrder = new ImageView();
-
-        if (customerImages[0].equals(customer)) {
-            customerOrder = orderLabels[0];
-        } else if (customerImages[1].equals(customer)) {
-            customerOrder = orderLabels[1];
-        } else if (customerImages[2].equals(customer)) {
-            customerOrder = orderLabels[2];
-        } else if (customerImages[3].equals(customer)) {
-            customerOrder = orderLabels[3];
-        } else if (customerImages[4].equals(customer)) {
-            customerOrder = orderLabels[4];
-        } else if (customerImages[5].equals(customer)) {
-            customerOrder = orderLabels[5];
-        } else if (customerImages[6].equals(customer)) {
-            customerOrder = orderLabels[6];
+        for (int i = 0; i < customerImages.length; i++) {
+            if (customerImages[i].equals(customer)) {
+                customerOrder = orderLabels[i];
+            }
         }
-
         return customerOrder;
-
     }
 
     //Returns random customer picture
@@ -196,9 +169,9 @@ public class Customer {
             ImageView customerImage = getRandomPic(); //get random picture from Array
             customerImage.setVisible(true); //make this picture visible
 
-            ImageView order = getLabel(customerImage); //get the label for the customer
-            ImageView smiley = getImage(customerImage, smileyImages); //gets the smiley picture for the customer
-            ImageView coin = getImage(customerImage, coinImages); //gets the coin picture for the customer
+            ImageView order = getCustomerOrderLabel(customerImage); //get the label for the customer
+            ImageView smiley = getCustomerMoodImage(customerImage, smileyImages); //gets the smiley picture for the customer
+            ImageView coin = getCustomerMoodImage(customerImage, coinImages); //gets the coin picture for the customer
 
 
             Customer customer = new Customer(customerImage, order, freeSeatChosen, smiley, coin); //make new customer object
@@ -236,7 +209,7 @@ public class Customer {
                     @Override
                     public void run() {
                         try {
-                            leave(customer.getImage());
+                            leave(customer.getCustomerMoodImage());
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
@@ -259,7 +232,7 @@ public class Customer {
                 if (seconds == 59){ //set green smiley when the customer has just spawned
                     customerSmileyMood.setVisible(true);
                     try {
-                        customerSmileyMood.setImage(createImage("smileygreen.png"));
+                        customerSmileyMood.setImage(createImageFilePath("smileygreen.png"));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -269,7 +242,7 @@ public class Customer {
                 }else if (seconds == 30){ //set yellow smiley when the customer has just spawned
                     customerSmileyMood.setVisible(true);
                     try {
-                        customerSmileyMood.setImage(createImage("smileyyellow.png"));
+                        customerSmileyMood.setImage(createImageFilePath("smileyyellow.png"));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -279,7 +252,7 @@ public class Customer {
                 }else if (seconds == 15){ //set red smiley when the customer has just spawned
                     customerSmileyMood.setVisible(true);
                     try {
-                        customerSmileyMood.setImage(createImage("smileyred.png"));
+                        customerSmileyMood.setImage(createImageFilePath("smileyred.png"));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -304,24 +277,24 @@ public class Customer {
         if(customerOrder.equals("cake")) {
             if (chairsOccupiedByCustomers == 0 || chairsOccupiedByCustomers == 1 || chairsOccupiedByCustomers == 4 || chairsOccupiedByCustomers == 6) {
                 orderlabel.setVisible(true);
-                orderlabel.setImage(createImage("bubbleCakeTopLeft.png"));
+                orderlabel.setImage(createImageFilePath("bubbleCakeTopLeft.png"));
             } else if(chairsOccupiedByCustomers == 2 || chairsOccupiedByCustomers == 3){
                 orderlabel.setVisible(true);
-                orderlabel.setImage(createImage("bubbleCakeTopRight.png"));
+                orderlabel.setImage(createImageFilePath("bubbleCakeTopRight.png"));
             } else if(chairsOccupiedByCustomers == 5) {
                 orderlabel.setVisible(true);
-                orderlabel.setImage(createImage("bubbleCakeBottomRight.png"));
+                orderlabel.setImage(createImageFilePath("bubbleCakeBottomRight.png"));
             }
         } else if(customerOrder.equals("coffee")){
             if (chairsOccupiedByCustomers == 0 || chairsOccupiedByCustomers == 1 || chairsOccupiedByCustomers == 4 || chairsOccupiedByCustomers == 6) {
                 orderlabel.setVisible(true);
-                orderlabel.setImage(createImage("bubbleCoffeeTopLeft.png"));
+                orderlabel.setImage(createImageFilePath("bubbleCoffeeTopLeft.png"));
             } else if(chairsOccupiedByCustomers == 2 || chairsOccupiedByCustomers == 3){
                 orderlabel.setVisible(true);
-                orderlabel.setImage(createImage("bubbleCoffeeTopRight.png"));
+                orderlabel.setImage(createImageFilePath("bubbleCoffeeTopRight.png"));
             } else if(chairsOccupiedByCustomers == 5){
                 orderlabel.setVisible(true);
-                orderlabel.setImage(createImage("bubbleCoffeeBottomRight.png"));
+                orderlabel.setImage(createImageFilePath("bubbleCoffeeBottomRight.png"));
             }
         }
         this.isCustomerOrdered = true;
@@ -330,7 +303,7 @@ public class Customer {
 
     //Methode to check if the order is right or wrong
     public boolean checkOrder(Player CofiBrew, Customer customer, ImageView waiterImage) throws FileNotFoundException{
-        waiterImage.setImage(createImage(CofiBrew.getFilenameImageWithoutProduct())); //set CofiBrew without order
+        waiterImage.setImage(createImageFilePath(CofiBrew.getFilenameImageWithoutProduct())); //set CofiBrew without order
         if (CofiBrew.getProductInHand().equals(customer.getCustomerOrder())) { //if CofiBrew has the right order
             CofiBrew.setProductInHand("none"); // change product hold by player to none
             this.isCustomerLeftUnhappy = false;
@@ -354,7 +327,7 @@ public class Customer {
     //Methode for when the customer leaves
     public void leave (ImageView customerImage) throws FileNotFoundException {
         customerImage.setVisible(false);
-        customersInCoffeeShop.removeIf(customer -> customer.getImage().equals(customerImage)); //remove customer from customerList
+        customersInCoffeeShop.removeIf(customer -> customer.getCustomerMoodImage().equals(customerImage)); //remove customer from customerList
         this.customerPaymentPicture.setVisible(true);
         this.customerPaymentPicture.setDisable(false);
         if (this.isCustomerLeftUnhappy){ //when customer leaves after 60 seconds or received wrong order
@@ -363,7 +336,7 @@ public class Customer {
             AudioClip wrongOrder = new AudioClip(new File(musicFile).toURI().toString());
             //MediaPlayer collectMoney = new MediaPlayer(sound);
             wrongOrder.play();
-            this.customerPaymentPicture.setImage(this.createImage("coin.png")); // set coin Image to empty plate
+            this.customerPaymentPicture.setImage(this.createImageFilePath("coin.png")); // set coin Image to empty plate
             this.customerPaymentPicture.setOnMouseClicked(event1 -> { // set click event to this
                 try {
                     noMoneySpent(this);
