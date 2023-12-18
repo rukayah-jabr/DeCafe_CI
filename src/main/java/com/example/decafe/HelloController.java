@@ -160,9 +160,9 @@ public class HelloController implements Initializable {
         loadScene("gameScreen.fxml");
         if (Customer.customerImages[0] != null) {
             Customer customer = new Customer();
-            customer.startTimerSpawn(1, Customer.getSpawingTimer());
-            customer.startTimerSpawn(5, Customer.getSpawingTimer());
-            customer.startTimerSpawn(10, Customer.getSpawingTimer());
+            customer.startTimerToSpawnCustomers(1, Customer.getSpawingTimer());
+            customer.startTimerToSpawnCustomers(5, Customer.getSpawingTimer());
+            customer.startTimerToSpawnCustomers(10, Customer.getSpawingTimer());
             Customer.allCustomersCreated.add(customer);
         }
         backgroundMusic.setCycleCount(AudioClip.INDEFINITE);
@@ -434,7 +434,7 @@ public class HelloController implements Initializable {
     // find the customer in the customerList and return it
     public Customer findCustomer(List<Customer> customerList, ImageView customerImageView) {
         for (Customer customer : customerList) {
-            if (customer.getCustomerMoodImage().equals(customerImageView)) {
+            if (customer.getCustomerImage().equals(customerImageView)) {
                 return customer;
             }
         }
@@ -451,7 +451,7 @@ public class HelloController implements Initializable {
         } else {
             if (customerImageView.getBoundsInParent().intersects(waiterImageView.getBoundsInParent())) { // If customer has already ordered and waiter is near the customer
                 try {
-                    customer.startTimerSpawn(5, Customer.getSpawingTimer()); // spawn a new customer if a chair is free
+                    customer.startTimerToSpawnCustomers(5, Customer.getSpawingTimer()); // spawn a new customer if a chair is free
                 } catch (NullPointerException e) {
                     switchToEndScreen();
                 }
@@ -533,7 +533,7 @@ public class HelloController implements Initializable {
             checkUpgradePossible(Play.getPlayerUpgrade());
             coinsEarnedLabel.setText(String.valueOf(Play.getCoinsEarned())); // refresh the coin score shown in GUI
             try {
-                customer.startTimerSpawn(5, Customer.getSpawingTimer()); // spawn a new customer
+                customer.startTimerToSpawnCustomers(5, Customer.getSpawingTimer()); // spawn a new customer
             } catch (NullPointerException y) {
                 switchToEndScreen();
             }
