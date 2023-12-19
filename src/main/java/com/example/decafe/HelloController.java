@@ -500,9 +500,9 @@ public class HelloController implements Initializable {
         getUpgrade.play();
 
         // check if other upgrades are still possible or if they need to be "deactivated"
-        checkUpgradePossible(Play.getCoffeeUpgrade());
-        checkUpgradePossible(Play.getCakeUpgrade());
-        checkUpgradePossible(Play.getPlayerUpgrade());
+        checkUpgradePossible(Play.getCoffeeMachineUpgrade());
+        checkUpgradePossible(Play.getCakeMachineUpgrade());
+        checkUpgradePossible(Play.getPlayerMovmentUpgrade());
     }
 
     // check if collisions occur
@@ -523,14 +523,14 @@ public class HelloController implements Initializable {
         //MediaPlayer collectMoney = new MediaPlayer(sound);
         collectMoney.play();
         Customer.addFreeSeat(customer.getChairsOccupiedByCustomers()); // add the seat chosen from the customer to the freeSeatsArray again
-        Play.setCoinsEarned(customer); // set the money earned according to what amount of money the customer left
+        Play.earnCoinsFromCustomerSatisfaction(customer); // set the money earned according to what amount of money the customer left
         ((ImageView) e.getSource()).setVisible(false); // disable the coin Image and make it invisible
         ((ImageView) e.getSource()).setDisable(true);
 
         if (Play.getCoinsEarned() < 80) { // check if enough coins were earned to end the game
-            checkUpgradePossible(Play.getCoffeeUpgrade()); // if not, check if any upgrades would be possible
-            checkUpgradePossible(Play.getCakeUpgrade());
-            checkUpgradePossible(Play.getPlayerUpgrade());
+            checkUpgradePossible(Play.getCoffeeMachineUpgrade()); // if not, check if any upgrades would be possible
+            checkUpgradePossible(Play.getCakeMachineUpgrade());
+            checkUpgradePossible(Play.getPlayerMovmentUpgrade());
             coinsEarnedLabel.setText(String.valueOf(Play.getCoinsEarned())); // refresh the coin score shown in GUI
             try {
                 customer.startTimerToSpawnCustomers(5, Customer.getSpawingTimer()); // spawn a new customer
