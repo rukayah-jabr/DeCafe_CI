@@ -37,7 +37,7 @@ public class HelloController implements Initializable {
 
     //Assets of the Game Screen
     // Image of the waiter
-    private ImageView waiterImageView;
+    public ImageView waiterImageView;
 
     // Label that shows the current amount of coins earned
     private Label coinsEarnedLabel;
@@ -458,29 +458,33 @@ public class HelloController implements Initializable {
                     switchToEndScreen();
                 }
                 if (customer.checkOrder(cofiBrew, customer, waiterImageView)) { // check if order the waiter has in his hands is the one the customer ordered
-                    String moneyImage = ""; // if so set the relating coin ImageView
-                    if (customer.isGreen()) { // if customer left happy
-                        moneyImage = play.getFilenameImageDollar();
-                    } else if (customer.isYellow()) { // if customer left normal
-                        moneyImage = play.getFilenameImageFourCoins();
-                    } else if (customer.isRed()) { // if customer left sad
-                        moneyImage = play.getFilenameImageThreeCoins();
-                    }
-                    customer.getCoinImage().setImage(createImage(moneyImage)); //set coin image
-                    customer.getCoinImage().setOnMouseClicked(event1 -> { // set click event for coin image
-                        try {
-                            getMoney(event1, customer); // if coin Image is clicked jump to this method
-                        } catch (IOException e) {
-                            try {
-                                switchToEndScreen();
-                            } catch (IOException ex) {
-                                ex.printStackTrace();
-                            }
-                        }
-                    });
+                    checkCustomerHappiness(customer);
                 }
             }
         }
+    }
+
+    private void checkCustomerHappiness(Customer customer) throws FileNotFoundException {
+        String moneyImage = ""; // if so set the relating coin ImageView
+        if (customer.isGreen()) { // if customer left happy
+            moneyImage = play.getFilenameImageDollar();
+        } else if (customer.isYellow()) { // if customer left normal
+            moneyImage = play.getFilenameImageFourCoins();
+        } else if (customer.isRed()) { // if customer left sad
+            moneyImage = play.getFilenameImageThreeCoins();
+        }
+        customer.getCoinImage().setImage(createImage(moneyImage)); //set coin image
+        customer.getCoinImage().setOnMouseClicked(event1 -> { // set click event for coin image
+            try {
+                getMoney(event1, customer); // if coin Image is clicked jump to this method
+            } catch (IOException e) {
+                try {
+                    switchToEndScreen();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     // Method to check if an Upgrade can be made (check if player has earned enough coins and if it was already used or not)
