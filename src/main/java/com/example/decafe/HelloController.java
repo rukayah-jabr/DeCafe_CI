@@ -32,15 +32,15 @@ public class HelloController implements Initializable {
     private static final String COFFEE = "coffee";
 
     // Assets of the Start Screen
-    public ImageView startButton;
-    public ImageView startQuitButton;
+    private ImageView startButton;
+    private ImageView startQuitButton;
 
     //Assets of the Game Screen
     // Image of the waiter
-    public ImageView waiterImageView;
+    private ImageView waiterImageView;
 
     // Label that shows the current amount of coins earned
-    public Label coinsEarnedLabel;
+    private Label coinsEarnedLabel;
     // Used for controlling the movement of the Player
     private BooleanProperty wPressed = new SimpleBooleanProperty();
     private BooleanProperty aPressed = new SimpleBooleanProperty();
@@ -49,98 +49,94 @@ public class HelloController implements Initializable {
     private BooleanBinding keyPressed = wPressed.or(aPressed).or(sPressed).or(dPressed);
 
     // Images of the Object the Player can interact with
-    public ImageView coffeeMachineImageView;
-    public ImageView cakeMachineImageView;
-    public ImageView trashcanImageView;
+    private ImageView coffeeMachineImageView;
+    private ImageView cakeMachineImageView;
 
     // Progress bars used to show Production Progress
-    public ProgressBar progressBarCoffee;
-    public ProgressBar progressBarCake;
+    private ProgressBar progressBarCoffee;
+    private ProgressBar progressBarCake;
 
     // Images used to control Upgrades
-    public ImageView upgradeCoffeeImageView;
-    public ImageView upgradeCakeImageView;
-    public ImageView upgradePlayerImageView;
+    private ImageView upgradeCoffeeImageView;
+    private ImageView upgradeCakeImageView;
+    private ImageView upgradePlayerImageView;
 
     // Labels used for collision detection management
-    public Label table1;
-    public Label table2;
-    public Label table3;
-    public Label table4;
-    public Label plantsAbove;
-    public Label countRight;
-    public Label countBelow;
-    public Label customerTop1;
-    public Label customerTop2;
-    public Label customerTop3;
-    public Label customerTop4;
-    public Label customerBot1;
-    public Label customerBot2;
-    public Label customerBot3;
-    public Label plant;
-    public Label edgeBot;
-    public Label edgeTop;
-    public Label edgeLeft;
-    public Label edgeRight;
+    private Label table1;
+    private Label table2;
+    private Label table3;
+    private Label table4;
+    private Label plantsAbove;
+    private Label countRight;
+    private Label countBelow;
+    private Label customerTop1;
+    private Label customerTop2;
+    private Label customerTop3;
+    private Label customerTop4;
+    private Label customerBot1;
+    private Label customerBot2;
+    private Label customerBot3;
+    private Label plant;
+    private Label edgeBot;
+    private Label edgeTop;
+    private Label edgeLeft;
+    private Label edgeRight;
 
     //for the customers
     //smiley images
-    public ImageView smileyFirst;
-    public ImageView smileySecond;
-    public ImageView smileyThird;
-    public ImageView smileyFourth;
-    public ImageView smileyFifth;
-    public ImageView smileySixth;
-    public ImageView smileySeventh;
+    private ImageView smileyFirst;
+    private ImageView smileySecond;
+    private ImageView smileyThird;
+    private ImageView smileyFourth;
+    private ImageView smileyFifth;
+    private ImageView smileySixth;
+    private ImageView smileySeventh;
 
     //coin images
-    public ImageView coinFirst;
-    public ImageView coinSecond;
-    public ImageView coinThird;
-    public ImageView coinFourth;
-    public ImageView coinFifth;
-    public ImageView coinSixth;
-    public ImageView coinSeventh;
+    private ImageView coinFirst;
+    private ImageView coinSecond;
+    private ImageView coinThird;
+    private ImageView coinFourth;
+    private ImageView coinFifth;
+    private ImageView coinSixth;
+    private ImageView coinSeventh;
 
     //order labels
-    public ImageView orderlabel1 = new ImageView();
-    public ImageView orderlabel2 = new ImageView();
-    public ImageView orderlabel3 = new ImageView();
-    public ImageView orderlabel4 = new ImageView();
-    public ImageView orderlabel5 = new ImageView();
-    public ImageView orderlabel6 = new ImageView();
-    public ImageView orderlabel7 = new ImageView();
+    private ImageView orderlabel1 = new ImageView();
+    private ImageView orderlabel2 = new ImageView();
+    private ImageView orderlabel3 = new ImageView();
+    private ImageView orderlabel4 = new ImageView();
+    private ImageView orderlabel5 = new ImageView();
+    private ImageView orderlabel6 = new ImageView();
+    private ImageView orderlabel7 = new ImageView();
 
     //customer images
-    public ImageView first;
-    public ImageView second;
-    public ImageView third;
-    public ImageView fourth;
-    public ImageView fifth;
-    public ImageView sixth;
-    public ImageView seventh;
+    private ImageView first;
+    private ImageView second;
+    private ImageView third;
+    private ImageView fourth;
+    private ImageView fifth;
+    private ImageView sixth;
+    private ImageView seventh;
 
     // for end screen
-    public ImageView gameStartButton;
-    public ImageView cofiBrewImage;
-    public ImageView playAgainImage;
-    public ImageView backToStartImage;
-    public Label labelCredits;
-    public ImageView endScreenBackground;
-    public ImageView quitEndScreenImage;
+    private ImageView gameStartButton;
+    private ImageView playAgainImage;
+    private ImageView backToStartImage;
+    private ImageView quitEndScreenImage;
 
     // Player object created to change Images and movement Speed
-    public Player cofiBrew = new Player("CofiBrewUp.png", "CofiBrewCakeLeft.png", "CofiBrewCoffeeLeft.png", 4);
+    private Player cofiBrew = new Player("CofiBrewUp.png", "CofiBrewCakeLeft.png", "CofiBrewCoffeeLeft.png", 4);
     // Game object used to control main methods
-    public Game play;
+    private Game play;
     // Label array used for collision detection management
     private Label[] collisions;
     // Timer used to spawn customers or make them leave
-    public Timer controllerTimer = new Timer();
+    private Timer controllerTimer = new Timer();
 
-    public File fileToGetBackgroundMusic = new File("");
-    public String musicFileToGetBackgroundMusic = fileToGetBackgroundMusic.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "backgroundmusic.mp3";
-    public AudioClip backgroundMusic = new AudioClip(new File(musicFileToGetBackgroundMusic).toURI().toString());
+    private File fileToGetBackgroundMusic = new File("");
+    private String musicFileToGetBackgroundMusic = fileToGetBackgroundMusic.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "backgroundmusic.mp3";
+    private AudioClip backgroundMusic = new AudioClip(new File(musicFileToGetBackgroundMusic).toURI().toString());
 
     // Method used to load a certain scene according to the name of the fxml file
     public void loadScene(String sceneName) throws IOException {
@@ -248,6 +244,10 @@ public class HelloController implements Initializable {
             waiterImageView.setLayoutX(waiterImageView.getLayoutX() + xMove);
             waiterImageView.setLayoutY(waiterImageView.getLayoutY() + yMove);
 
+            handleCollision(xMove, yMove, movement);
+        }
+
+        private void handleCollision(double xMove, double yMove, String movement) {
             // if collision is detected, set x and y coordinates back to where no collision occurred
             if (checkForCollision(waiterImageView)) {
                 waiterImageView.setLayoutX(waiterImageView.getLayoutX() - xMove);
