@@ -16,8 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 
 import java.io.*;
 import java.net.URL;
@@ -25,6 +24,12 @@ import java.util.*;
 
 // Class that is responsible for every action taken in JavaFX GUI (connected via fxml files)
 public class HelloController implements Initializable {
+
+    //defining constants to prevent duplicating
+    private static final String RESOURCES = "resources";
+    private static final String EXAMPLE = "example";
+    private static final String DECAFE = "decafe";
+    private static final String COFFEE = "coffee";
 
     // Assets of the Start Screen
     public ImageView startButton;
@@ -133,10 +138,9 @@ public class HelloController implements Initializable {
     // Timer used to spawn customers or make them leave
     public Timer controllerTimer = new Timer();
 
-    public File f = new File("");
-    public String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "backgroundmusic.mp3";
+    public File fileToGetBackgroundMusic = new File("");
+    public String musicFile = fileToGetBackgroundMusic.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "backgroundmusic.mp3";
     public AudioClip backgroundMusic = new AudioClip(new File(musicFile).toURI().toString());
-
 
     // Method used to load a certain scene according to the name of the fxml file
     public void loadScene(String sceneName) throws IOException {
@@ -256,7 +260,7 @@ public class HelloController implements Initializable {
                             waiterImageView.setImage(createImage("CofiBrewUp.png"));
                         } else if (CofiBrew.getProductInHand().equals("cake")){
                             waiterImageView.setImage(createImage("CofiBrewCakeUp.png"));
-                        } else if (CofiBrew.getProductInHand().equals("coffee")){
+                        } else if (CofiBrew.getProductInHand().equals(COFFEE)){
                             waiterImageView.setImage(createImage("CofiBrewCoffeeUp.png"));
                         }
                     } catch (FileNotFoundException e) {
@@ -268,7 +272,7 @@ public class HelloController implements Initializable {
                             waiterImageView.setImage(createImage("CofiBrewDown.png"));
                         } else if (CofiBrew.getProductInHand().equals("cake")){
                             waiterImageView.setImage(createImage("CofiBrewCakeDown.png"));
-                        } else if (CofiBrew.getProductInHand().equals("coffee")){
+                        } else if (CofiBrew.getProductInHand().equals(COFFEE)){
                             waiterImageView.setImage(createImage("CofiBrewCoffeeDown.png"));
                         }
                     } catch (FileNotFoundException e) {
@@ -280,7 +284,7 @@ public class HelloController implements Initializable {
                             waiterImageView.setImage(createImage("CofiBrewLeft.png"));
                         } else if (CofiBrew.getProductInHand().equals("cake")){
                             waiterImageView.setImage(createImage("CofiBrewCakeLeft.png"));
-                        } else if (CofiBrew.getProductInHand().equals("coffee")){
+                        } else if (CofiBrew.getProductInHand().equals(COFFEE)){
                             waiterImageView.setImage(createImage("CofiBrewCoffeeLeft.png"));
                         }
                     } catch (FileNotFoundException e) {
@@ -292,7 +296,7 @@ public class HelloController implements Initializable {
                             waiterImageView.setImage(createImage("CofiBrewRight.png"));
                         } else if (CofiBrew.getProductInHand().equals("cake")){
                             waiterImageView.setImage(createImage("CofiBrewCakeRight.png"));
-                        } else if (CofiBrew.getProductInHand().equals("coffee")){
+                        } else if (CofiBrew.getProductInHand().equals(COFFEE)){
                             waiterImageView.setImage(createImage("CofiBrewCoffeeRight.png"));
                         }
                     } catch (FileNotFoundException e) {
@@ -330,9 +334,9 @@ public class HelloController implements Initializable {
 
     // Method used to create an Image Object
     public Image createImage(String filename) throws FileNotFoundException {
-        File f = new File(""); // Get filepath of project
+        File fileToGetProject = new File(""); // Get filepath of project
         // Get path to certain Image
-        String filePath = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + filename;
+        String filePath = fileToGetProject.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + filename;
         InputStream stream = new FileInputStream(filePath); // Convert path into stream
         return new Image(stream); // Convert stream to Image and return it
     }
@@ -400,8 +404,8 @@ public class HelloController implements Initializable {
     public void showCoffee() throws FileNotFoundException {
         if (waiterImageView.getBoundsInParent().intersects(coffeeMachineImageView.getBoundsInParent())) {
             Play.getCoffeeMachine().displayProduct(waiterImageView, coffeeMachineImageView, CofiBrew, progressBarCoffee);
-            File f = new File("");
-            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "test_sound.wav";
+            File fileToGetCoffeeSound = new File("");
+            String musicFile = fileToGetCoffeeSound.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "test_sound.wav";
             AudioClip coffeeSound = new AudioClip(new File(musicFile).toURI().toString());
             //MediaPlayer coffeeSound = new MediaPlayer(sound);
             coffeeSound.play();
@@ -412,8 +416,8 @@ public class HelloController implements Initializable {
     public void showCake() throws FileNotFoundException {
         if (waiterImageView.getBoundsInParent().intersects(cakeMachineImageView.getBoundsInParent())) {
             Play.getCakeMachine().displayProduct(waiterImageView, cakeMachineImageView, CofiBrew, progressBarCake);
-            File f = new File("");
-            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "test_sound.wav";
+            File fileToGetCakeSound = new File("");
+            String musicFile = fileToGetCakeSound.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "test_sound.wav";
             AudioClip cakeSound = new AudioClip(new File(musicFile).toURI().toString());
             //MediaPlayer cakeSound = new MediaPlayer(sound);
             cakeSound.play();
@@ -422,9 +426,9 @@ public class HelloController implements Initializable {
 
     // if no product is held by waiter
     public void noProduct() throws FileNotFoundException {
-        if (CofiBrew.getProductInHand().equals("coffee") || CofiBrew.getProductInHand().equals("cake")) {
-            File f = new File("");
-            String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "trashSound.mp3";
+        if (CofiBrew.getProductInHand().equals(COFFEE) || CofiBrew.getProductInHand().equals("cake")) {
+            File fileToGetTrashSound = new File("");
+            String musicFile = fileToGetTrashSound.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "trashSound.mp3";
             AudioClip trashSound = new AudioClip(new File(musicFile).toURI().toString());
             //MediaPlayer cakeSound = new MediaPlayer(sound);
             trashSound.play();
@@ -495,8 +499,8 @@ public class HelloController implements Initializable {
         // set the coin label to the correct amount of coins (coins earned - upgrade costs)
         coinsEarnedLabel.setText(String.valueOf(Play.getCoinsEarned()));
 
-        File f = new File("");
-        String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "upgradeSound.wav";
+        File fileToGetUpgradeSound = new File("");
+        String musicFile = fileToGetUpgradeSound.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "upgradeSound.wav";
         AudioClip getUpgrade = new AudioClip(new File(musicFile).toURI().toString());
         //MediaPlayer collectMoney = new MediaPlayer(sound);
         getUpgrade.play();
@@ -519,8 +523,8 @@ public class HelloController implements Initializable {
 
     // Method used when coin Image is clicked on
     public void getMoney(MouseEvent e, Customer customer) throws IOException {
-        File f = new File("");
-        String musicFile = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + "coinsSound.wav";
+        File fileToGetCollectMoneySound = new File("");
+        String musicFile = fileToGetCollectMoneySound.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "coinsSound.wav";
         AudioClip collectMoney = new AudioClip(new File(musicFile).toURI().toString());
         //MediaPlayer collectMoney = new MediaPlayer(sound);
         collectMoney.play();
