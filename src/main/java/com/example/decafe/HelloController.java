@@ -162,10 +162,10 @@ public class HelloController implements Initializable {
         loadScene("gameScreen.fxml");
         if (Customer.customerImages[0] != null) {
             Customer customer = new Customer();
-            customer.startTimerSpawn(1, Customer.getControllerTimer());
-            customer.startTimerSpawn(5, Customer.getControllerTimer());
-            customer.startTimerSpawn(10, Customer.getControllerTimer());
-            Customer.allCustomers.add(customer);
+            customer.startTimerToSpawnCustomers(1, Customer.getSpawingTimer());
+            customer.startTimerToSpawnCustomers(5, Customer.getSpawingTimer());
+            customer.startTimerToSpawnCustomers(10, Customer.getSpawingTimer());
+            Customer.allCustomersCreated.add(customer);
         }
         backgroundMusic.setCycleCount(AudioClip.INDEFINITE);
         backgroundMusic.play();
@@ -326,7 +326,7 @@ public class HelloController implements Initializable {
         Customer.orderLabels = new ImageView[]{orderlabel1, orderlabel2, orderlabel3, orderlabel4, orderlabel5, orderlabel6, orderlabel7}; //make label label[]
         Customer.coinImages = new ImageView[]{coinFirst, coinSecond, coinThird, coinFourth, coinFifth, coinSixth, coinSeventh}; //make coin ImageView[]
         Customer.freeChairs = new ArrayList<>(Arrays.asList(0,1,2,3,4,5,6)); //make freeChairs Array
-        Customer.setControllerTimer(controllerTimer); //set the static timer t
+        Customer.setSpawingTimer(controllerTimer); //set the static timer t
         play = new Game(upgradeCoffeeImageView, upgradeCakeImageView, upgradePlayerImageView); // initialise Game Object with upgrade ImageViews
     }
 
@@ -436,7 +436,7 @@ public class HelloController implements Initializable {
     // find the customer in the customerList and return it
     public Customer findCustomer(List<Customer> customerList, ImageView customerImageView) {
         for (Customer customer : customerList) {
-            if (customer.getImage().equals(customerImageView)) {
+            if (customer.getCustomerImage().equals(customerImageView)) {
                 return customer;
             }
         }
@@ -448,12 +448,12 @@ public class HelloController implements Initializable {
         ImageView customerImageView = (ImageView) event.getSource(); //get the Customer of the clicked Image
         Customer customer = findCustomer(Customer.customersInCoffeeShop, customerImageView); //make new customer object
 
-        if (!customer.isAlreadyOrdered()) { //if customer has not ordered yet, display an order
-            customer.displayOrder(customer.getLabel());
+        if (!customer.isCustomerOrdered()) { //if customer has not ordered yet, display an order
+            customer.displayOrder(customer.getCustomerOrderLabel());
         } else {
             if (customerImageView.getBoundsInParent().intersects(waiterImageView.getBoundsInParent())) { // If customer has already ordered and waiter is near the customer
                 try {
-                    customer.startTimerSpawn(5, Customer.getControllerTimer()); // spawn a new customer if a chair is free
+                    customer.startTimerToSpawnCustomers(5, Customer.getSpawingTimer()); // spawn a new customer if a chair is free
                 } catch (NullPointerException e) {
                     switchToEndScreen();
                 }
@@ -466,15 +466,15 @@ public class HelloController implements Initializable {
 
     private void checkCustomerHappiness(Customer customer) throws FileNotFoundException {
         String moneyImage = ""; // if so set the relating coin ImageView
-        if (customer.isGreen()) { // if customer left happy
+        if (customer.isGreenSmiley()) { // if customer left happy
             moneyImage = play.getFilenameImageDollar();
-        } else if (customer.isYellow()) { // if customer left normal
+        } else if (customer.isYellowSmiley()) { // if customer left normal
             moneyImage = play.getFilenameImageFourCoins();
-        } else if (customer.isRed()) { // if customer left sad
+        } else if (customer.isRedSmiley()) { // if customer left sad
             moneyImage = play.getFilenameImageThreeCoins();
         }
-        customer.getCoinImage().setImage(createImage(moneyImage)); //set coin image
-        customer.getCoinImage().setOnMouseClicked(event1 -> { // set click event for coin image
+        customer.getCustomerPaymentPicture().setImage(createImage(moneyImage)); //set coin image
+        customer.getCustomerPaymentPicture().setOnMouseClicked(event1 -> { // set click event for coin image
             try {
                 getMoney(event1, customer); // if coin Image is clicked jump to this method
             } catch (IOException e) {
@@ -505,9 +505,9 @@ public class HelloController implements Initializable {
         getUpgrade.play();
 
         // check if other upgrades are still possible or if they need to be "deactivated"
-        checkUpgradePossible(play.getCoffeeUpgrade());
-        checkUpgradePossible(play.getCakeUpgrade());
-        checkUpgradePossible(play.getPlayerUpgrade());
+        checkUpgradePossible(play.getCoffeeMachineUpgrade());
+        checkUpgradePossible(play.getCakeMachineUpgrade());
+        checkUpgradePossible(play.getPlayerMovmentUpgrade());
     }
 
     // check if collisions occur
@@ -526,18 +526,18 @@ public class HelloController implements Initializable {
         String musicFileToGetCollectMoneySound = fileToGetCollectMoneySound.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "coinsSound.wav";
         AudioClip collectMoney = new AudioClip(new File(musicFileToGetCollectMoneySound).toURI().toString());
         collectMoney.play();
-        Customer.addFreeSeat(customer.getChair()); // add the seat chosen from the customer to the freeSeatsArray again
-        play.setCoinsEarned(customer); // set the money earned according to what amount of money the customer left
+        Customer.addFreeSeat(customer.getChairsOccupiedByCustomers()); // add the seat chosen from the customer to the freeSeatsArray again
+        play.earnCoinsFromCustomerSatisfaction(customer); // set the money earned according to what amount of money the customer left
         ((ImageView) e.getSource()).setVisible(false); // disable the coin Image and make it invisible
         ((ImageView) e.getSource()).setDisable(true);
 
         if (play.getCoinsEarned() < 80) { // check if enough coins were earned to end the game
-            checkUpgradePossible(play.getCoffeeUpgrade()); // if not, check if any upgrades would be possible
-            checkUpgradePossible(play.getCakeUpgrade());
-            checkUpgradePossible(play.getPlayerUpgrade());
+            checkUpgradePossible(play.getCoffeeMachineUpgrade()); // if not, check if any upgrades would be possible
+            checkUpgradePossible(play.getCakeMachineUpgrade());
+            checkUpgradePossible(play.getPlayerMovmentUpgrade());
             coinsEarnedLabel.setText(String.valueOf(play.getCoinsEarned())); // refresh the coin score shown in GUI
             try {
-                customer.startTimerSpawn(5, Customer.getControllerTimer()); // spawn a new customer
+                customer.startTimerToSpawnCustomers(5, Customer.getSpawingTimer()); // spawn a new customer
             } catch (NullPointerException y) {
                 switchToEndScreen();
             }
@@ -549,17 +549,17 @@ public class HelloController implements Initializable {
 
     // Method used to stop all the timers activated by spawning customers
     public void stopTimers() {
-        for (Customer customer : Customer.allCustomers) { // cancel all 60 seconds timers
-            if (customer.getSixtySecondsTimer() != null) {
-                customer.getSixtySecondsTimer().cancel();
+        for (Customer customer : Customer.allCustomersCreated) { // cancel all 60 seconds timers
+            if (customer.getSixtySecondsWaitingTimer() != null) {
+                customer.getSixtySecondsWaitingTimer().cancel();
             }
         }
-        Customer.allCustomers.clear(); // clear all Lists created by spawning/despawning customer
+        Customer.allCustomersCreated.clear(); // clear all Lists created by spawning/despawning customer
         Customer.customersInCoffeeShop.clear();
         Customer.freeChairs.clear();
         cofiBrew.setProductInHand("none"); // clear Cofis hand
         controllerTimer.cancel(); // cancel spawn/leaving timer
-        Customer.getControllerTimer().cancel();
+        Customer.getSpawingTimer().cancel();
     }
 
     // end game (called when exit clicked) - in Game Screen
