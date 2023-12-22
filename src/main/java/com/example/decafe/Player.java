@@ -22,15 +22,15 @@ public class Player {
         return productInHand;
     }
 
-    public String getFilenameImageWithoutProduct() {
+    public String getWaiterImageWithoutProduct() {
         return waiterImageWithoutProduct;
     }
 
-    public String getFilenameImageWithCake() {
+    public String getWaiterImageWithCake() {
         return waiterImageWithCake;
     }
 
-    public String getFilenameImageWithCoffee() {
+    public String getWaiterImageWithCoffee() {
         return waiterImageWithCoffee;
     }
 
