@@ -8,7 +8,6 @@ public class Player {
     private String productInHand;
     private int movementSpeed;
 
-    // Constructor
     public Player(String waiterImageWithoutProduct, String waiterImageWithCake, String waiterImageWithCoffee, int movement) {
         this.waiterImageWithoutProduct = waiterImageWithoutProduct;
         this.waiterImageWithCake =  waiterImageWithCake;
@@ -17,7 +16,6 @@ public class Player {
         this.movementSpeed = movement;
     }
 
-    //Getter
     public String getProductInHand() {
         return productInHand;
     }
@@ -38,7 +36,6 @@ public class Player {
         return movementSpeed;
     }
 
-    //Setter
     public void setProductInHand(String productInHand) {
         this.productInHand = productInHand;
     }
