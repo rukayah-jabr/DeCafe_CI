@@ -2,11 +2,11 @@ package com.example.decafe;
 
 // Class to handle Methods used to change the Image and movement speed of waiter
 public class Player {
-    private final String filenameImageWithoutProduct; // Image of the waiter without anything in his hands
-    private final String filenameImageWithCoffee; // Image of the waiter with coffee in his hands
-    private final String filenameImageWithCake; // Image of the waiter with cake in his hands
-    private String productInHand; // The type of product the waiter holds in his hands (Coffee or Cake)
-    private int movementSpeed; // the movement speed at which the waiter moves
+    private final String filenameImageWithoutProduct;
+    private final String filenameImageWithCoffee;
+    private final String filenameImageWithCake;
+    private String productInHand;
+    private int movementSpeed;
 
     // Constructor
     public Player(String filenameImageWithoutProduct, String filenameImageWithCake, String filenameImageWithCoffee, int movement) {
