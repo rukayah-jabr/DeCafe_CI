@@ -9,38 +9,36 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-// Function used to control all the methods used for Upgrades
-public class Upgrade {
-    private final int CoinsNeeded; // The coins needed to use/do the Upgrade
-    private boolean alreadyUsedOnce; // Boolean that indicates if the Upgrade was already used or not
-    private final String filenameUpgradeNotUsed; // Image of "deactivated" Upgrade
-    private final String filenameUpgradeUsed; // Image of "activated" Upgrade
-    private final ImageView upgradeImageView; // ImageView that is related to the Upgrade
 
-    // Constructor
-    Upgrade(int coinsNeeded, boolean alreadyUsedOnce, String filenameUpgradeNotUsed, String filenameUpgradeUsed, ImageView upgradeImageView){
-        this.CoinsNeeded = coinsNeeded;
+public class Upgrade {
+    private final int coinsNeeded;
+    private boolean alreadyUsedOnce;
+    private final String imageUpgradeNotUsed;
+    private final String imageUpgradeUsed;
+    private final ImageView upgradeImageView;
+
+    Upgrade(int coinsNeeded, boolean alreadyUsedOnce, String imageUpgradeNotUsed, String imageUpgradeUsed, ImageView upgradeImageView){
+        this.coinsNeeded = coinsNeeded;
         this.alreadyUsedOnce = alreadyUsedOnce;
-        this.filenameUpgradeNotUsed = filenameUpgradeNotUsed;
-        this.filenameUpgradeUsed = filenameUpgradeUsed;
+        this.imageUpgradeNotUsed = imageUpgradeNotUsed;
+        this.imageUpgradeUsed = imageUpgradeUsed;
         this.upgradeImageView = upgradeImageView;
     }
 
-    // Getter
     public boolean isAlreadyUsedOnce() {
         return alreadyUsedOnce;
     }
 
     public int getCoinsNeeded() {
-        return CoinsNeeded;
+        return coinsNeeded;
     }
 
-    public String getFilenameUpgradeUsed() {
-        return filenameUpgradeUsed;
+    public String getImageUpgradeUsed() {
+        return imageUpgradeUsed;
     }
 
-    public String getFilenameUpgradeNotUsed() {
-        return filenameUpgradeNotUsed;
+    public String getImageUpgradeNotUsed() {
+        return imageUpgradeNotUsed;
     }
 
     public ImageView getUpgradeImageView() { return upgradeImageView; }
@@ -63,7 +61,7 @@ public class Upgrade {
     // Method used to use an Upgrade
     public int doUpgrades(int coin) throws FileNotFoundException {
         // Change Image to the "deactivated" Upgrade Image
-        this.upgradeImageView.setImage(createImage(this.filenameUpgradeUsed));
+        this.upgradeImageView.setImage(createImage(this.imageUpgradeUsed));
         // Disable the ImageView
         this.upgradeImageView.setDisable(true);
         // Set the Used variable to true
