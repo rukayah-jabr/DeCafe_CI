@@ -11,6 +11,7 @@ import java.io.InputStream;
 
 
 public class Upgrade {
+    private static final String RESOURCE_PATH = "src/main/resources/com/example/decafe";
     private final int coinsNeeded;
     private boolean alreadyUsedOnce;
     private final String imageUpgradeNotUsed;
@@ -48,8 +49,7 @@ public class Upgrade {
     }
 
     public Image createImage(String filename) throws FileNotFoundException {
-        File f = new File("");
-        String filePath = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + filename;
+        String filePath = new File("").getAbsolutePath() + File.separator + RESOURCE_PATH + File.separator + filename;
         InputStream stream = new FileInputStream(filePath);
         return new Image(stream);
     }
