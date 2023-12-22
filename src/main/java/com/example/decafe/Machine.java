@@ -26,31 +26,35 @@ public class Machine {
     private final String filenameImageMachineWithoutProduct;
     private final String filenameImageMachineWithProduct;
     private final String productType;
-    private int duration;
+    private int productionTime;
     private Boolean produced;
 
-    public Machine(int duration, String filenameImageMachineWithProduct, String filenameImageMachineWithoutProduct, String productType){
-        this.duration = duration;
+    public Machine(int productionTime, String filenameImageMachineWithProduct, String filenameImageMachineWithoutProduct, String productType) {
+        this.productionTime = productionTime;
         this.produced = false;
         this.filenameImageMachineWithProduct = filenameImageMachineWithProduct;
         this.filenameImageMachineWithoutProduct = filenameImageMachineWithoutProduct;
         this.productType = productType;
     }
 
-    public int getDuration() { return duration; }
+    public int getProductionTime() {
+        return productionTime;
+    }
 
     public Boolean getProduced() { return produced; }
 
-    public void setDuration(int duration) { this.duration = duration; }
+    public void setProductionTime(int productionTime) {
+        this.productionTime = productionTime;
+    }
 
     public void setProduced(Boolean produced){ this.produced = produced; }
 
     public Image createImage(String filename) throws FileNotFoundException {
-        File f = new File(""); // Get filepath of project
+        File f = new File("");
 
         String filePath = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + filename;
-        InputStream stream = new FileInputStream(filePath); // Convert path into stream
-        return new Image(stream); // Convert stream to Image and return it
+        InputStream stream = new FileInputStream(filePath);
+        return new Image(stream);
     }
 
     public void doProgressBarAnimation(Timer productionTimer, ImageView machineImageView, ProgressBar machineProgressBar, Image imageProductProduced){
@@ -66,8 +70,7 @@ public class Machine {
                         new KeyValue(machineProgressBar.progressProperty(), 0)
                 ),
                 new KeyFrame(
-                        // Set the duration of the progressbar animation
-                        Duration.seconds(this.getDuration()),
+                        Duration.seconds(this.getProductionTime()),
                         new KeyValue(machineProgressBar.progressProperty(), 1)
                 )
         );
@@ -102,17 +105,14 @@ public class Machine {
                 new TimerTask() {
                     @Override
                     public void run() {
-                        // After a certain time was reached change the Image of the Machine
                         machineImageView.setImage(imageProductProduced);
-                        // And make the Machine clickable again
                         machineImageView.setDisable(false);
-                        // And stop all timers
                         task.stop();
                         timelineBar.stop();
                         productionTimer.cancel();
                     }
                 },
-                this.duration* 1000L
+                this.productionTime * 1000L
         );
     }
 

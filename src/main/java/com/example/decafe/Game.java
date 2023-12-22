@@ -47,13 +47,13 @@ public class Game {
                 // Set the coin score according to what the upgrade cost + change Image and Disable upgrade
                 coinsEarned = coffeeMachineUpgrade.doUpgrades(coinsEarned);
                 // Increase the speed of the Coffee Machine
-                coffeeMachine.setDuration(2);
+                coffeeMachine.setProductionTime(2);
             }
             case "cake" -> { // If the player chose the cake upgrade
                 // Set the coin score according to what the upgrade cost + change Image and Disable upgrade
                 coinsEarned = cakeMachineUpgrade.doUpgrades(coinsEarned);
                 // Increase the speed of the Cake Machine
-                cakeMachine.setDuration(2);
+                cakeMachine.setProductionTime(2);
             }
             case "player" -> { // If the player chose the player upgrade
                 // Set the coin score according to what the upgrade cost + change Image and Disable upgrade
