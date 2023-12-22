@@ -17,7 +17,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
 
-
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -328,6 +327,7 @@ public class HelloController implements Initializable {
         Customer.freeChairs = new ArrayList<>(Arrays.asList(0,1,2,3,4,5,6)); //make freeChairs Array
         Customer.setSpawingTimer(controllerTimer); //set the static timer t
         play = new Game(upgradeCoffeeImageView, upgradeCakeImageView, upgradePlayerImageView); // initialise Game Object with upgrade ImageViews
+
     }
 
 
@@ -508,6 +508,7 @@ public class HelloController implements Initializable {
         checkUpgradePossible(play.getCoffeeMachineUpgrade());
         checkUpgradePossible(play.getCakeMachineUpgrade());
         checkUpgradePossible(play.getPlayerMovmentUpgrade());
+
     }
 
     // check if collisions occur
@@ -536,6 +537,7 @@ public class HelloController implements Initializable {
             checkUpgradePossible(play.getCakeMachineUpgrade());
             checkUpgradePossible(play.getPlayerMovmentUpgrade());
             coinsEarnedLabel.setText(String.valueOf(play.getCoinsEarned())); // refresh the coin score shown in GUI
+
             try {
                 customer.startTimerToSpawnCustomers(5, Customer.getSpawingTimer()); // spawn a new customer
             } catch (NullPointerException y) {
