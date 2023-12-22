@@ -33,10 +33,10 @@ public class Game {
     public void checkUpgradePossible(Upgrade upgrade) throws FileNotFoundException {
         if (!upgrade.isAlreadyUsedOnce() && this.coinsEarned >= upgrade.getCoinsNeeded()){ // If upgrade was not already used and the Player earned enough coins to buy it
             upgrade.getUpgradeImageView().setDisable(false);
-            upgrade.getUpgradeImageView().setImage(customer.createImageFilePath(upgrade.getFilenameUpgradeNotUsed()));
+            upgrade.getUpgradeImageView().setImage(customer.createImageFilePath(upgrade.getImageUpgradeNotUsed()));
         } else {
             upgrade.getUpgradeImageView().setDisable(true);
-            upgrade.getUpgradeImageView().setImage(customer.createImageFilePath(upgrade.getFilenameUpgradeUsed()));
+            upgrade.getUpgradeImageView().setImage(customer.createImageFilePath(upgrade.getImageUpgradeUsed()));
         }
     }
     // Method to do a certain upgrade

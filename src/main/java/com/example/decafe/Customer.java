@@ -209,7 +209,7 @@ public class Customer {
 
     //Methode to check if the order is right or wrong
     public boolean checkOrder(Player CofiBrew, Customer customer, ImageView waiterImage) throws FileNotFoundException{
-        waiterImage.setImage(createImageFilePath(CofiBrew.getFilenameImageWithoutProduct())); //set CofiBrew without order
+        waiterImage.setImage(createImageFilePath(CofiBrew.getWaiterImageWithoutProduct())); //set CofiBrew without order
         if (CofiBrew.getProductInHand().equals(customer.getCustomerOrder())) { //if CofiBrew has the right order
             CofiBrew.setProductInHand("none"); // change product hold by player to none
             this.isCustomerLeftUnhappy = false;
