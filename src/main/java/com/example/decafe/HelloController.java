@@ -428,7 +428,7 @@ public class HelloController implements Initializable {
             String musicFileToGetTrashSound = fileToGetTrashSound.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + RESOURCES + File.separator + "com" + File.separator + EXAMPLE + File.separator + DECAFE + File.separator + "trashSound.mp3";
             AudioClip trashSound = new AudioClip(new File(musicFileToGetTrashSound).toURI().toString());
             trashSound.play();
-            waiterImageView.setImage(createImage(cofiBrew.getFilenameImageWithoutProduct()));
+            waiterImageView.setImage(createImage(cofiBrew.getWaiterImageWithoutProduct()));
             cofiBrew.setProductInHand("none");
         }
     }
