@@ -2,17 +2,17 @@ package com.example.decafe;
 
 // Class to handle Methods used to change the Image and movement speed of waiter
 public class Player {
-    private final String filenameImageWithoutProduct;
-    private final String filenameImageWithCoffee;
-    private final String filenameImageWithCake;
+    private final String waiterImageWithoutProduct;
+    private final String waiterImageWithCoffee;
+    private final String waiterImageWithCake;
     private String productInHand;
     private int movementSpeed;
 
     // Constructor
-    public Player(String filenameImageWithoutProduct, String filenameImageWithCake, String filenameImageWithCoffee, int movement) {
-        this.filenameImageWithoutProduct = filenameImageWithoutProduct;
-        this.filenameImageWithCake =  filenameImageWithCake;
-        this.filenameImageWithCoffee = filenameImageWithCoffee;
+    public Player(String waiterImageWithoutProduct, String waiterImageWithCake, String waiterImageWithCoffee, int movement) {
+        this.waiterImageWithoutProduct = waiterImageWithoutProduct;
+        this.waiterImageWithCake =  waiterImageWithCake;
+        this.waiterImageWithCoffee = waiterImageWithCoffee;
         this.productInHand = "none";
         this.movementSpeed = movement;
     }
@@ -23,15 +23,15 @@ public class Player {
     }
 
     public String getFilenameImageWithoutProduct() {
-        return filenameImageWithoutProduct;
+        return waiterImageWithoutProduct;
     }
 
     public String getFilenameImageWithCake() {
-        return filenameImageWithCake;
+        return waiterImageWithCake;
     }
 
     public String getFilenameImageWithCoffee() {
-        return filenameImageWithCoffee;
+        return waiterImageWithCoffee;
     }
 
     public int getMovement() {
