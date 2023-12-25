@@ -31,7 +31,9 @@ public class HelloController implements Initializable {
     private static final String COFFEE = "coffee";
 
     // Assets of the Start Screen
+    @FXML
     private ImageView startButton;
+    @FXML
     private ImageView startQuitButton;
 
     //Assets of the Game Screen
@@ -39,6 +41,7 @@ public class HelloController implements Initializable {
     public ImageView waiterImageView;
 
     // Label that shows the current amount of coins earned
+    @FXML
     private Label coinsEarnedLabel;
     // Used for controlling the movement of the Player
     private BooleanProperty wPressed = new SimpleBooleanProperty();
@@ -48,80 +51,136 @@ public class HelloController implements Initializable {
     private BooleanBinding keyPressed = wPressed.or(aPressed).or(sPressed).or(dPressed);
 
     // Images of the Object the Player can interact with
+    @FXML
     private ImageView coffeeMachineImageView;
+    @FXML
     private ImageView cakeMachineImageView;
 
     // Progress bars used to show Production Progress
+    @FXML
     private ProgressBar progressBarCoffee;
+    @FXML
     private ProgressBar progressBarCake;
 
     // Images used to control Upgrades
+    @FXML
     private ImageView upgradeCoffeeImageView;
+    @FXML
     private ImageView upgradeCakeImageView;
+    @FXML
     private ImageView upgradePlayerImageView;
 
     // Labels used for collision detection management
+    @FXML
     private Label table1;
+    @FXML
     private Label table2;
+    @FXML
     private Label table3;
+    @FXML
     private Label table4;
+    @FXML
     private Label plantsAbove;
+    @FXML
     private Label countRight;
+    @FXML
     private Label countBelow;
+    @FXML
     private Label customerTop1;
+    @FXML
     private Label customerTop2;
+    @FXML
     private Label customerTop3;
+    @FXML
     private Label customerTop4;
+    @FXML
     private Label customerBot1;
+    @FXML
     private Label customerBot2;
+    @FXML
     private Label customerBot3;
+    @FXML
     private Label plant;
+    @FXML
     private Label edgeBot;
+    @FXML
     private Label edgeTop;
+    @FXML
     private Label edgeLeft;
+    @FXML
     private Label edgeRight;
 
     //for the customers
     //smiley images
+    @FXML
     private ImageView smileyFirst;
+    @FXML
     private ImageView smileySecond;
+    @FXML
     private ImageView smileyThird;
+    @FXML
     private ImageView smileyFourth;
+    @FXML
     private ImageView smileyFifth;
+    @FXML
     private ImageView smileySixth;
+    @FXML
     private ImageView smileySeventh;
 
     //coin images
+    @FXML
     private ImageView coinFirst;
+    @FXML
     private ImageView coinSecond;
+    @FXML
     private ImageView coinThird;
+    @FXML
     private ImageView coinFourth;
+    @FXML
     private ImageView coinFifth;
+    @FXML
     private ImageView coinSixth;
+    @FXML
     private ImageView coinSeventh;
 
     //order labels
+    @FXML
     private ImageView orderlabel1 = new ImageView();
+    @FXML
     private ImageView orderlabel2 = new ImageView();
+    @FXML
     private ImageView orderlabel3 = new ImageView();
+    @FXML
     private ImageView orderlabel4 = new ImageView();
+    @FXML
     private ImageView orderlabel5 = new ImageView();
+    @FXML
     private ImageView orderlabel6 = new ImageView();
+    @FXML
     private ImageView orderlabel7 = new ImageView();
 
     //customer images
+    @FXML
     private ImageView first;
+    @FXML
     private ImageView second;
+    @FXML
     private ImageView third;
+    @FXML
     private ImageView fourth;
+    @FXML
     private ImageView fifth;
+    @FXML
     private ImageView sixth;
+    @FXML
     private ImageView seventh;
 
     // for end screen
+    @FXML
     private ImageView gameStartButton;
     private ImageView playAgainImage;
     private ImageView backToStartImage;
+    @FXML
     private ImageView quitEndScreenImage;
 
     // Player object created to change Images and movement Speed
@@ -577,5 +636,605 @@ public class HelloController implements Initializable {
         Platform.exit();
         backgroundMusic.stop();
         System.exit(0);
+    }
+
+    public ImageView getStartButton() {
+        return startButton;
+    }
+
+    public void setStartButton(ImageView startButton) {
+        this.startButton = startButton;
+    }
+
+    public ImageView getStartQuitButton() {
+        return startQuitButton;
+    }
+
+    public void setStartQuitButton(ImageView startQuitButton) {
+        this.startQuitButton = startQuitButton;
+    }
+
+    public Label getCoinsEarnedLabel() {
+        return coinsEarnedLabel;
+    }
+
+    public void setCoinsEarnedLabel(Label coinsEarnedLabel) {
+        this.coinsEarnedLabel = coinsEarnedLabel;
+    }
+
+    public boolean iswPressed() {
+        return wPressed.get();
+    }
+
+    public BooleanProperty wPressedProperty() {
+        return wPressed;
+    }
+
+    public void setwPressed(boolean wPressed) {
+        this.wPressed.set(wPressed);
+    }
+
+    public boolean isaPressed() {
+        return aPressed.get();
+    }
+
+    public BooleanProperty aPressedProperty() {
+        return aPressed;
+    }
+
+    public void setaPressed(boolean aPressed) {
+        this.aPressed.set(aPressed);
+    }
+
+    public boolean issPressed() {
+        return sPressed.get();
+    }
+
+    public BooleanProperty sPressedProperty() {
+        return sPressed;
+    }
+
+    public void setsPressed(boolean sPressed) {
+        this.sPressed.set(sPressed);
+    }
+
+    public boolean isdPressed() {
+        return dPressed.get();
+    }
+
+    public BooleanProperty dPressedProperty() {
+        return dPressed;
+    }
+
+    public void setdPressed(boolean dPressed) {
+        this.dPressed.set(dPressed);
+    }
+
+    public Boolean getKeyPressed() {
+        return keyPressed.get();
+    }
+
+    public BooleanBinding keyPressedProperty() {
+        return keyPressed;
+    }
+
+    public ImageView getCoffeeMachineImageView() {
+        return coffeeMachineImageView;
+    }
+
+    public void setCoffeeMachineImageView(ImageView coffeeMachineImageView) {
+        this.coffeeMachineImageView = coffeeMachineImageView;
+    }
+
+    public ImageView getCakeMachineImageView() {
+        return cakeMachineImageView;
+    }
+
+    public void setCakeMachineImageView(ImageView cakeMachineImageView) {
+        this.cakeMachineImageView = cakeMachineImageView;
+    }
+
+    public ProgressBar getProgressBarCoffee() {
+        return progressBarCoffee;
+    }
+
+    public void setProgressBarCoffee(ProgressBar progressBarCoffee) {
+        this.progressBarCoffee = progressBarCoffee;
+    }
+
+    public ProgressBar getProgressBarCake() {
+        return progressBarCake;
+    }
+
+    public void setProgressBarCake(ProgressBar progressBarCake) {
+        this.progressBarCake = progressBarCake;
+    }
+
+    public ImageView getUpgradeCoffeeImageView() {
+        return upgradeCoffeeImageView;
+    }
+
+    public void setUpgradeCoffeeImageView(ImageView upgradeCoffeeImageView) {
+        this.upgradeCoffeeImageView = upgradeCoffeeImageView;
+    }
+
+    public ImageView getUpgradeCakeImageView() {
+        return upgradeCakeImageView;
+    }
+
+    public void setUpgradeCakeImageView(ImageView upgradeCakeImageView) {
+        this.upgradeCakeImageView = upgradeCakeImageView;
+    }
+
+    public ImageView getUpgradePlayerImageView() {
+        return upgradePlayerImageView;
+    }
+
+    public void setUpgradePlayerImageView(ImageView upgradePlayerImageView) {
+        this.upgradePlayerImageView = upgradePlayerImageView;
+    }
+
+    public Label getTable1() {
+        return table1;
+    }
+
+    public void setTable1(Label table1) {
+        this.table1 = table1;
+    }
+
+    public Label getTable2() {
+        return table2;
+    }
+
+    public void setTable2(Label table2) {
+        this.table2 = table2;
+    }
+
+    public Label getTable3() {
+        return table3;
+    }
+
+    public void setTable3(Label table3) {
+        this.table3 = table3;
+    }
+
+    public Label getTable4() {
+        return table4;
+    }
+
+    public void setTable4(Label table4) {
+        this.table4 = table4;
+    }
+
+    public Label getPlantsAbove() {
+        return plantsAbove;
+    }
+
+    public void setPlantsAbove(Label plantsAbove) {
+        this.plantsAbove = plantsAbove;
+    }
+
+    public Label getCountRight() {
+        return countRight;
+    }
+
+    public void setCountRight(Label countRight) {
+        this.countRight = countRight;
+    }
+
+    public Label getCountBelow() {
+        return countBelow;
+    }
+
+    public void setCountBelow(Label countBelow) {
+        this.countBelow = countBelow;
+    }
+
+    public Label getCustomerTop1() {
+        return customerTop1;
+    }
+
+    public void setCustomerTop1(Label customerTop1) {
+        this.customerTop1 = customerTop1;
+    }
+
+    public Label getCustomerTop2() {
+        return customerTop2;
+    }
+
+    public void setCustomerTop2(Label customerTop2) {
+        this.customerTop2 = customerTop2;
+    }
+
+    public Label getCustomerTop3() {
+        return customerTop3;
+    }
+
+    public void setCustomerTop3(Label customerTop3) {
+        this.customerTop3 = customerTop3;
+    }
+
+    public Label getCustomerTop4() {
+        return customerTop4;
+    }
+
+    public void setCustomerTop4(Label customerTop4) {
+        this.customerTop4 = customerTop4;
+    }
+
+    public Label getCustomerBot1() {
+        return customerBot1;
+    }
+
+    public void setCustomerBot1(Label customerBot1) {
+        this.customerBot1 = customerBot1;
+    }
+
+    public Label getCustomerBot2() {
+        return customerBot2;
+    }
+
+    public void setCustomerBot2(Label customerBot2) {
+        this.customerBot2 = customerBot2;
+    }
+
+    public Label getCustomerBot3() {
+        return customerBot3;
+    }
+
+    public void setCustomerBot3(Label customerBot3) {
+        this.customerBot3 = customerBot3;
+    }
+
+    public Label getPlant() {
+        return plant;
+    }
+
+    public void setPlant(Label plant) {
+        this.plant = plant;
+    }
+
+    public Label getEdgeBot() {
+        return edgeBot;
+    }
+
+    public void setEdgeBot(Label edgeBot) {
+        this.edgeBot = edgeBot;
+    }
+
+    public Label getEdgeTop() {
+        return edgeTop;
+    }
+
+    public void setEdgeTop(Label edgeTop) {
+        this.edgeTop = edgeTop;
+    }
+
+    public Label getEdgeLeft() {
+        return edgeLeft;
+    }
+
+    public void setEdgeLeft(Label edgeLeft) {
+        this.edgeLeft = edgeLeft;
+    }
+
+    public Label getEdgeRight() {
+        return edgeRight;
+    }
+
+    public void setEdgeRight(Label edgeRight) {
+        this.edgeRight = edgeRight;
+    }
+
+    public ImageView getSmileyFirst() {
+        return smileyFirst;
+    }
+
+    public void setSmileyFirst(ImageView smileyFirst) {
+        this.smileyFirst = smileyFirst;
+    }
+
+    public ImageView getSmileySecond() {
+        return smileySecond;
+    }
+
+    public void setSmileySecond(ImageView smileySecond) {
+        this.smileySecond = smileySecond;
+    }
+
+    public ImageView getSmileyThird() {
+        return smileyThird;
+    }
+
+    public void setSmileyThird(ImageView smileyThird) {
+        this.smileyThird = smileyThird;
+    }
+
+    public ImageView getSmileyFourth() {
+        return smileyFourth;
+    }
+
+    public void setSmileyFourth(ImageView smileyFourth) {
+        this.smileyFourth = smileyFourth;
+    }
+
+    public ImageView getSmileyFifth() {
+        return smileyFifth;
+    }
+
+    public void setSmileyFifth(ImageView smileyFifth) {
+        this.smileyFifth = smileyFifth;
+    }
+
+    public ImageView getSmileySixth() {
+        return smileySixth;
+    }
+
+    public void setSmileySixth(ImageView smileySixth) {
+        this.smileySixth = smileySixth;
+    }
+
+    public ImageView getSmileySeventh() {
+        return smileySeventh;
+    }
+
+    public void setSmileySeventh(ImageView smileySeventh) {
+        this.smileySeventh = smileySeventh;
+    }
+
+    public ImageView getCoinFirst() {
+        return coinFirst;
+    }
+
+    public void setCoinFirst(ImageView coinFirst) {
+        this.coinFirst = coinFirst;
+    }
+
+    public ImageView getCoinSecond() {
+        return coinSecond;
+    }
+
+    public void setCoinSecond(ImageView coinSecond) {
+        this.coinSecond = coinSecond;
+    }
+
+    public ImageView getCoinThird() {
+        return coinThird;
+    }
+
+    public void setCoinThird(ImageView coinThird) {
+        this.coinThird = coinThird;
+    }
+
+    public ImageView getCoinFourth() {
+        return coinFourth;
+    }
+
+    public void setCoinFourth(ImageView coinFourth) {
+        this.coinFourth = coinFourth;
+    }
+
+    public ImageView getCoinFifth() {
+        return coinFifth;
+    }
+
+    public void setCoinFifth(ImageView coinFifth) {
+        this.coinFifth = coinFifth;
+    }
+
+    public ImageView getCoinSixth() {
+        return coinSixth;
+    }
+
+    public void setCoinSixth(ImageView coinSixth) {
+        this.coinSixth = coinSixth;
+    }
+
+    public ImageView getCoinSeventh() {
+        return coinSeventh;
+    }
+
+    public void setCoinSeventh(ImageView coinSeventh) {
+        this.coinSeventh = coinSeventh;
+    }
+
+    public ImageView getOrderlabel1() {
+        return orderlabel1;
+    }
+
+    public void setOrderlabel1(ImageView orderlabel1) {
+        this.orderlabel1 = orderlabel1;
+    }
+
+    public ImageView getOrderlabel2() {
+        return orderlabel2;
+    }
+
+    public void setOrderlabel2(ImageView orderlabel2) {
+        this.orderlabel2 = orderlabel2;
+    }
+
+    public ImageView getOrderlabel3() {
+        return orderlabel3;
+    }
+
+    public void setOrderlabel3(ImageView orderlabel3) {
+        this.orderlabel3 = orderlabel3;
+    }
+
+    public ImageView getOrderlabel4() {
+        return orderlabel4;
+    }
+
+    public void setOrderlabel4(ImageView orderlabel4) {
+        this.orderlabel4 = orderlabel4;
+    }
+
+    public ImageView getOrderlabel5() {
+        return orderlabel5;
+    }
+
+    public void setOrderlabel5(ImageView orderlabel5) {
+        this.orderlabel5 = orderlabel5;
+    }
+
+    public ImageView getOrderlabel6() {
+        return orderlabel6;
+    }
+
+    public void setOrderlabel6(ImageView orderlabel6) {
+        this.orderlabel6 = orderlabel6;
+    }
+
+    public ImageView getOrderlabel7() {
+        return orderlabel7;
+    }
+
+    public void setOrderlabel7(ImageView orderlabel7) {
+        this.orderlabel7 = orderlabel7;
+    }
+
+    public ImageView getFirst() {
+        return first;
+    }
+
+    public void setFirst(ImageView first) {
+        this.first = first;
+    }
+
+    public ImageView getSecond() {
+        return second;
+    }
+
+    public void setSecond(ImageView second) {
+        this.second = second;
+    }
+
+    public ImageView getThird() {
+        return third;
+    }
+
+    public void setThird(ImageView third) {
+        this.third = third;
+    }
+
+    public ImageView getFourth() {
+        return fourth;
+    }
+
+    public void setFourth(ImageView fourth) {
+        this.fourth = fourth;
+    }
+
+    public ImageView getFifth() {
+        return fifth;
+    }
+
+    public void setFifth(ImageView fifth) {
+        this.fifth = fifth;
+    }
+
+    public ImageView getSixth() {
+        return sixth;
+    }
+
+    public void setSixth(ImageView sixth) {
+        this.sixth = sixth;
+    }
+
+    public ImageView getSeventh() {
+        return seventh;
+    }
+
+    public void setSeventh(ImageView seventh) {
+        this.seventh = seventh;
+    }
+
+    public ImageView getGameStartButton() {
+        return gameStartButton;
+    }
+
+    public void setGameStartButton(ImageView gameStartButton) {
+        this.gameStartButton = gameStartButton;
+    }
+
+    public ImageView getPlayAgainImage() {
+        return playAgainImage;
+    }
+
+    public void setPlayAgainImage(ImageView playAgainImage) {
+        this.playAgainImage = playAgainImage;
+    }
+
+    public ImageView getBackToStartImage() {
+        return backToStartImage;
+    }
+
+    public void setBackToStartImage(ImageView backToStartImage) {
+        this.backToStartImage = backToStartImage;
+    }
+
+    public ImageView getQuitEndScreenImage() {
+        return quitEndScreenImage;
+    }
+
+    public void setQuitEndScreenImage(ImageView quitEndScreenImage) {
+        this.quitEndScreenImage = quitEndScreenImage;
+    }
+
+    public Player getCofiBrew() {
+        return cofiBrew;
+    }
+
+    public void setCofiBrew(Player cofiBrew) {
+        this.cofiBrew = cofiBrew;
+    }
+
+    public Game getPlay() {
+        return play;
+    }
+
+    public void setPlay(Game play) {
+        this.play = play;
+    }
+
+    public Label[] getCollisions() {
+        return collisions;
+    }
+
+    public void setCollisions(Label[] collisions) {
+        this.collisions = collisions;
+    }
+
+    public Timer getControllerTimer() {
+        return controllerTimer;
+    }
+
+    public void setControllerTimer(Timer controllerTimer) {
+        this.controllerTimer = controllerTimer;
+    }
+
+    public File getFileToGetBackgroundMusic() {
+        return fileToGetBackgroundMusic;
+    }
+
+    public void setFileToGetBackgroundMusic(File fileToGetBackgroundMusic) {
+        this.fileToGetBackgroundMusic = fileToGetBackgroundMusic;
+    }
+
+    public String getMusicFileToGetBackgroundMusic() {
+        return musicFileToGetBackgroundMusic;
+    }
+
+    public void setMusicFileToGetBackgroundMusic(String musicFileToGetBackgroundMusic) {
+        this.musicFileToGetBackgroundMusic = musicFileToGetBackgroundMusic;
+    }
+
+    public AudioClip getBackgroundMusic() {
+        return backgroundMusic;
+    }
+
+    public void setBackgroundMusic(AudioClip backgroundMusic) {
+        this.backgroundMusic = backgroundMusic;
     }
 }
