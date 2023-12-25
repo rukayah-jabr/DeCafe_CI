@@ -9,68 +9,56 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-// Function used to control all the methods used for Upgrades
-public class Upgrade {
-    private final int CoinsNeeded; // The coins needed to use/do the Upgrade
-    private boolean alreadyUsedOnce; // Boolean that indicates if the Upgrade was already used or not
-    private final String filenameUpgradeNotUsed; // Image of "deactivated" Upgrade
-    private final String filenameUpgradeUsed; // Image of "activated" Upgrade
-    private final ImageView upgradeImageView; // ImageView that is related to the Upgrade
 
-    // Constructor
-    Upgrade(int coinsNeeded, boolean alreadyUsedOnce, String filenameUpgradeNotUsed, String filenameUpgradeUsed, ImageView upgradeImageView){
-        this.CoinsNeeded = coinsNeeded;
+public class Upgrade {
+    private static final String RESOURCE_PATH = "src/main/resources/com/example/decafe";
+    private final int coinsNeeded;
+    private boolean alreadyUsedOnce;
+    private final String imageUpgradeNotUsed;
+    private final String imageUpgradeUsed;
+    private final ImageView upgradeImageView;
+
+    Upgrade(int coinsNeeded, boolean alreadyUsedOnce, String imageUpgradeNotUsed, String imageUpgradeUsed, ImageView upgradeImageView){
+        this.coinsNeeded = coinsNeeded;
         this.alreadyUsedOnce = alreadyUsedOnce;
-        this.filenameUpgradeNotUsed = filenameUpgradeNotUsed;
-        this.filenameUpgradeUsed = filenameUpgradeUsed;
+        this.imageUpgradeNotUsed = imageUpgradeNotUsed;
+        this.imageUpgradeUsed = imageUpgradeUsed;
         this.upgradeImageView = upgradeImageView;
     }
 
-    // Getter
     public boolean isAlreadyUsedOnce() {
         return alreadyUsedOnce;
     }
 
     public int getCoinsNeeded() {
-        return CoinsNeeded;
+        return coinsNeeded;
     }
 
-    public String getFilenameUpgradeUsed() {
-        return filenameUpgradeUsed;
+    public String getImageUpgradeUsed() {
+        return imageUpgradeUsed;
     }
 
-    public String getFilenameUpgradeNotUsed() {
-        return filenameUpgradeNotUsed;
+    public String getImageUpgradeNotUsed() {
+        return imageUpgradeNotUsed;
     }
 
     public ImageView getUpgradeImageView() { return upgradeImageView; }
 
-    // Setter
     public void setAlreadyUsedOnce(boolean alreadyUsedOnce) {
         this.alreadyUsedOnce = alreadyUsedOnce;
     }
 
-
-    // Method used to create an Image Object
     public Image createImage(String filename) throws FileNotFoundException {
-        File f = new File(""); // Get filepath of project
-        // Get path to certain Image
-        String filePath = f.getAbsolutePath() + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "com" + File.separator + "example" + File.separator + "decafe" + File.separator + filename;
-        InputStream stream = new FileInputStream(filePath); // Convert path into stream
-        return new Image(stream); // Convert stream to Image and return it
+        String filePath = new File("").getAbsolutePath() + File.separator + RESOURCE_PATH + File.separator + filename;
+        InputStream stream = new FileInputStream(filePath);
+        return new Image(stream);
     }
 
-    // Method used to use an Upgrade
     public int doUpgrades(int coin) throws FileNotFoundException {
-        // Change Image to the "deactivated" Upgrade Image
-        this.upgradeImageView.setImage(createImage(this.filenameUpgradeUsed));
-        // Disable the ImageView
+        this.upgradeImageView.setImage(createImage(this.imageUpgradeUsed));
         this.upgradeImageView.setDisable(true);
-        // Set the Used variable to true
         this.setAlreadyUsedOnce(true);
-        // Decrease the coins score according to the upgrade costs
         coin -= this.getCoinsNeeded();
-        // return the new coin score
         return coin;
     }
 }
