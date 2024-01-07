@@ -11,11 +11,12 @@ public class Game {
     private final Upgrade coffeeMachineUpgrade;
     private final Upgrade cakeMachineUpgrade;
     private final Upgrade playerMovmentUpgrade;
+    public Customer customer;
     private int coinsEarned;
     private final String filenameImageThreeCoins;
     private final String filenameImageFourCoins;
     private final String filenameImageDollar;
-    private Customer customer;
+
 
     // Constructor
     Game(ImageView upgradeCoffee, ImageView upgradeCake, ImageView upgradePlayer){
